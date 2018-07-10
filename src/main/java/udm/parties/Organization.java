@@ -16,18 +16,29 @@
 package udm.parties;
 
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import udm.VolatileEntity;
 
 /**
+ * An arbitrary group of individuals (formal: corporation, government agency; or informal:
+ * team, family).
  *
  * @author skrymets
  */
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Party extends VolatileEntity {
+public class Organization extends Party {
 
-    private static final long serialVersionUID = -113357481482772294L;
+    private static final long serialVersionUID = -1672993374489533004L;
+
+    protected String name;
+
+    public Organization() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
 }

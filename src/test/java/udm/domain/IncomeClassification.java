@@ -13,21 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.parties;
+package udm.domain;
 
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import udm.VolatileEntity;
+import udm.parties.PersonClassification;
 
 /**
  *
  * @author skrymets
  */
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Party extends VolatileEntity {
+public class IncomeClassification extends PersonClassification {
 
-    private static final long serialVersionUID = -113357481482772294L;
+    private static final long serialVersionUID = 5215867488222455218L;
 
 }

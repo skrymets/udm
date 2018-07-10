@@ -13,49 +13,41 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm;
+package udm.parties;
 
-import java.time.LocalDateTime;
 import java.util.Objects;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
+import udm.VolatileEntity;
 
 /**
  *
  * @author skrymets
+ * @param <T> a specific type of a party
  */
 @MappedSuperclass
-public abstract class VolatileEntity extends PersistentEntity {
+public abstract class PartyClassification<T extends Party> extends VolatileEntity {
 
-    private static final long serialVersionUID = 8814997773907565299L;
+    private static final long serialVersionUID = 1447936822300888937L;
 
-    private LocalDateTime validFrom;
+    @OneToOne
+    private T party;
 
-    private LocalDateTime validThru;
-
-    public VolatileEntity() {
+    public PartyClassification() {
     }
 
-    public LocalDateTime getValidFrom() {
-        return validFrom;
+    public T getParty() {
+        return party;
     }
 
-    public void setValidFrom(LocalDateTime validFrom) {
-        this.validFrom = validFrom;
-    }
-
-    public LocalDateTime getValidThru() {
-        return validThru;
-    }
-
-    public void setValidThru(LocalDateTime validThru) {
-        this.validThru = validThru;
+    public void setParty(T party) {
+        this.party = party;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 79 * hash + Objects.hashCode(this.validFrom);
-        hash = 79 * hash + Objects.hashCode(this.validThru);
+        int hash = 3;
+        hash = 29 * hash + Objects.hashCode(this.party);
         return hash;
     }
 
@@ -70,11 +62,8 @@ public abstract class VolatileEntity extends PersistentEntity {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final VolatileEntity other = (VolatileEntity) obj;
-        if (!Objects.equals(this.validFrom, other.validFrom)) {
-            return false;
-        }
-        if (!Objects.equals(this.validThru, other.validThru)) {
+        final PartyClassification<?> other = (PartyClassification<?>) obj;
+        if (!Objects.equals(this.party, other.party)) {
             return false;
         }
         return true;
