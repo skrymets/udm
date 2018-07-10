@@ -17,6 +17,7 @@ package udm;
 
 import java.io.Serializable;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
@@ -31,7 +32,7 @@ public abstract class PersistentEntity implements Serializable {
     private static final long serialVersionUID = -7419123669547193022L;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     protected Long id;
 
     @Version
