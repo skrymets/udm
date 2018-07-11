@@ -13,8 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.parties;
+package udm.parties.classifier;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -25,11 +26,12 @@ import udm.PersistentEntity;
  * @author skrymets
  */
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class PartyType extends PersistentEntity {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class PartyType extends PersistentEntity {
 
     private static final long serialVersionUID = -1735451119505129396L;
 
+    @Column(nullable = false)
     private String description;
 
     public PartyType() {

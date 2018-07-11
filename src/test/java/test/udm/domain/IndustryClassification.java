@@ -16,7 +16,7 @@
 package test.udm.domain;
 
 import javax.persistence.Entity;
-import udm.parties.OrganizationClassification;
+import udm.parties.classifier.OrganizationClassification;
 
 /**
  *

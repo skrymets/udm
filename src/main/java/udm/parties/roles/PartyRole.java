@@ -13,21 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package test.udm.domain;
+package udm.parties.roles;
 
 import javax.persistence.Entity;
-import udm.parties.classifier.PersonClassification;
+import javax.persistence.OneToOne;
+import udm.VolatileEntity;
+import udm.parties.Party;
 
 /**
  *
  * @author skrymets
  */
 @Entity
-public class IncomeClassification extends PersonClassification {
+public abstract class PartyRole extends VolatileEntity {
 
-    private static final long serialVersionUID = 5215867488222455218L;
+    private static final long serialVersionUID = 5704600205187968577L;
+    
+    @OneToOne
+    private Party party;
+    
+    @OneToOne
+    private RoleType roleType;
 
-    public IncomeClassification() {
+    public PartyRole() {
     }
 
 }

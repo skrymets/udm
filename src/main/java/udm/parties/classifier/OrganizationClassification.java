@@ -13,20 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.parties;
+package udm.parties.classifier;
 
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
-/**
- *
- * @author skrymets
- */
 @Entity
-public class PersonRole extends PartyRole {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class OrganizationClassification extends PartyClassification {
 
-    private static final long serialVersionUID = 5629594770725460564L;
+    private static final long serialVersionUID = -8673190880218630382L;
 
-    public PersonRole() {
+    public OrganizationClassification() {
     }
 
 }

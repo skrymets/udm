@@ -24,7 +24,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import test.udm.AbstractTest;
 import test.udm.domain.IncomeClassification;
-import udm.parties.PartyClassification;
+import udm.parties.classifier.PartyClassification;
 import udm.parties.Person;
 import udm.parties.QPerson;
 

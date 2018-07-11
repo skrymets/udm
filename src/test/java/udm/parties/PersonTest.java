@@ -15,6 +15,7 @@
  */
 package udm.parties;
 
+import udm.parties.classifier.PartyClassification;
 import com.mysema.query.jpa.JPQLQuery;
 import com.mysema.query.jpa.impl.JPAQuery;
 import javax.persistence.EntityManager;

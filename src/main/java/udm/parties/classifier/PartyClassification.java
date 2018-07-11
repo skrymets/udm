@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.parties;
+package udm.parties.classifier;
 
 import java.util.Objects;
 import javax.persistence.Entity;
@@ -21,6 +21,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
 import udm.VolatileEntity;
+import udm.parties.Party;
 
 /**
  *
@@ -29,7 +30,7 @@ import udm.VolatileEntity;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class PartyClassification extends VolatileEntity {
+public abstract class PartyClassification extends VolatileEntity {
 
     private static final long serialVersionUID = 1447936822300888937L;
 

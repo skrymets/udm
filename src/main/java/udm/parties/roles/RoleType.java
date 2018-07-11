@@ -13,21 +13,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.parties;
+package udm.parties.roles;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import udm.VolatileEntity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import udm.PersistentEntity;
 
 /**
  *
  * @author skrymets
  */
 @Entity
-public abstract class PartyRole extends VolatileEntity {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class RoleType extends PersistentEntity {
 
     private static final long serialVersionUID = 5704600205187968577L;
 
-    public PartyRole() {
+    @Column(nullable = false)
+    private String description;
+
+    public RoleType() {
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
 }

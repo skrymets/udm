@@ -16,7 +16,7 @@
 package udm.domain;
 
 import javax.persistence.Entity;
-import udm.parties.PersonClassification;
+import udm.parties.classifier.PersonClassification;
 
 /**
  *
