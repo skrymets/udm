@@ -16,7 +16,9 @@
 package udm.parties;
 
 import java.util.Objects;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
 import udm.VolatileEntity;
 
@@ -25,29 +27,42 @@ import udm.VolatileEntity;
  * @author skrymets
  * @param <T> a specific type of a party
  */
-@MappedSuperclass
-public abstract class PartyClassification<T extends Party> extends VolatileEntity {
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+public class PartyClassification extends VolatileEntity {
 
     private static final long serialVersionUID = 1447936822300888937L;
 
     @OneToOne
-    private T party;
+    private Party party;
+
+    @OneToOne
+    private PartyType partyType;
 
     public PartyClassification() {
     }
 
-    public T getParty() {
+    public Party getParty() {
         return party;
     }
 
-    public void setParty(T party) {
+    public void setParty(Party party) {
         this.party = party;
+    }
+
+    public PartyType getPartyType() {
+        return partyType;
+    }
+
+    public void setPartyType(PartyType partyType) {
+        this.partyType = partyType;
     }
 
     @Override
     public int hashCode() {
         int hash = 3;
         hash = 29 * hash + Objects.hashCode(this.party);
+        hash = 29 * hash + Objects.hashCode(this.partyType);
         return hash;
     }
 
@@ -62,8 +77,11 @@ public abstract class PartyClassification<T extends Party> extends VolatileEntit
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final PartyClassification<?> other = (PartyClassification<?>) obj;
+        final PartyClassification other = (PartyClassification) obj;
         if (!Objects.equals(this.party, other.party)) {
+            return false;
+        }
+        if (!Objects.equals(this.partyType, other.partyType)) {
             return false;
         }
         return true;

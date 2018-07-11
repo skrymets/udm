@@ -21,7 +21,7 @@ import javax.persistence.InheritanceType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class OrganizationClassification extends PartyClassification<Organization> {
+public abstract class OrganizationClassification extends PartyClassification {
 
     private static final long serialVersionUID = -8673190880218630382L;
 

@@ -15,19 +15,32 @@
  */
 package udm.parties;
 
-import udm.BusinessEntity;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import udm.PersistentEntity;
 
 /**
  *
  * @author skrymets
  */
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Party extends BusinessEntity {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public class PartyType extends PersistentEntity {
 
-    private static final long serialVersionUID = -113357481482772294L;
+    private static final long serialVersionUID = -1735451119505129396L;
+
+    private String description;
+
+    public PartyType() {
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
 }

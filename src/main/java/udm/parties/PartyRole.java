@@ -15,19 +15,19 @@
  */
 package udm.parties;
 
-import udm.BusinessEntity;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import udm.VolatileEntity;
 
 /**
  *
  * @author skrymets
  */
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Party extends BusinessEntity {
+public abstract class PartyRole extends VolatileEntity {
 
-    private static final long serialVersionUID = -113357481482772294L;
+    private static final long serialVersionUID = 5704600205187968577L;
+
+    public PartyRole() {
+    }
 
 }

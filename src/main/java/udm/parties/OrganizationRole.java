@@ -16,16 +16,17 @@
 package udm.parties;
 
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 
+/**
+ *
+ * @author skrymets
+ */
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class PersonClassification extends PartyClassification {
+public class OrganizationRole extends PartyRole {
 
-    private static final long serialVersionUID = -6296060330366783504L;
+    private static final long serialVersionUID = -8852125314497242717L;
 
-    public PersonClassification() {
+    public OrganizationRole() {
     }
 
 }

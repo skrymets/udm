@@ -13,21 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.parties;
+package udm;
 
-import udm.BusinessEntity;
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.MappedSuperclass;
 
 /**
  *
  * @author skrymets
  */
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Party extends BusinessEntity {
+@MappedSuperclass
+public abstract class BusinessEntity extends VolatileEntity {
 
-    private static final long serialVersionUID = -113357481482772294L;
+    private static final long serialVersionUID = 249793911463091173L;
+
+    public BusinessEntity() {
+    }
 
 }
