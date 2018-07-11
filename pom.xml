@@ -74,11 +74,28 @@
             <version>3.7.4</version>
             <scope>provided</scope>
         </dependency>
+        
+        <dependency>
+            <groupId>p6spy</groupId>
+            <artifactId>p6spy</artifactId>
+            <version>3.7.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--
+        <dependency>
+            <groupId>org.dbunit</groupId>
+            <artifactId>dbunit</artifactId>
+            <version>2.5.4</version>
+            <scope>test</scope>
+        </dependency>
+        -->
+        
                 
     </dependencies>
     
     <build>
-        <plugins>
+        <plugins>           
             <plugin>
                 <groupId>com.mysema.maven</groupId>
                 <artifactId>maven-apt-plugin</artifactId>
@@ -100,6 +117,7 @@
                     </execution>
                 </executions>
             </plugin>
+            
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
@@ -119,6 +137,7 @@
                     </execution>
                 </executions>
             </plugin>
+            
         </plugins>
     </build>
 </project>

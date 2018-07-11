@@ -16,3 +16,5 @@ buildNumber.properties
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
 >>>>>>> 025b5ab6f05b36a3255684c9101d2d1d20f0f9d4
+spy.log
+DUMP.sql
