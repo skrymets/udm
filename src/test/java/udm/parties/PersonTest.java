@@ -17,7 +17,6 @@ package udm.parties;
 
 import com.mysema.query.jpa.JPQLQuery;
 import com.mysema.query.jpa.impl.JPAQuery;
-import java.util.List;
 import javax.persistence.EntityManager;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -70,7 +69,7 @@ public class PersonTest extends AbstractTest {
         person.setLastName("Doe");
         person.setGender(Person.Gender.M);
 
-        PartyClassification<Person> classification = new IncomeClassification();
+        PartyClassification classification = new IncomeClassification();
         classification.setParty(person);
 
         em.persist(person);
