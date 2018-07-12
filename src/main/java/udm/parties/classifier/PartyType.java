@@ -19,6 +19,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Version;
 import udm.PersistentEntity;
 
 /**
@@ -33,6 +34,8 @@ public abstract class PartyType extends PersistentEntity {
 
     @Column(nullable = false)
     private String description;
+    @Version
+    protected Long version;
 
     public PartyType() {
     }
@@ -43,6 +46,14 @@ public abstract class PartyType extends PersistentEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
 }

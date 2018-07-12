@@ -20,7 +20,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.Version;
 
 /**
  *
@@ -35,9 +34,6 @@ public abstract class PersistentEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     protected Long id;
 
-    @Version
-    protected Long version;
-
     public PersistentEntity() {
     }
 
@@ -47,14 +43,6 @@ public abstract class PersistentEntity implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getVersion() {
-        return version;
-    }
-
-    public void setVersion(Long version) {
-        this.version = version;
     }
 
 }

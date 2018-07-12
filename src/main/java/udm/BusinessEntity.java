@@ -16,17 +16,28 @@
 package udm;
 
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Version;
 
 /**
  *
  * @author skrymets
  */
 @MappedSuperclass
-public abstract class BusinessEntity extends VolatileEntity {
+public abstract class BusinessEntity extends MutablePersistentEntity {
 
     private static final long serialVersionUID = 249793911463091173L;
+    @Version
+    protected Long version;
 
     public BusinessEntity() {
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
 }

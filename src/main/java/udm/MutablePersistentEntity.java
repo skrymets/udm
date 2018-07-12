@@ -18,21 +18,24 @@ package udm;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Version;
 
 /**
  *
  * @author skrymets
  */
 @MappedSuperclass
-public abstract class VolatileEntity extends PersistentEntity {
+public abstract class MutablePersistentEntity extends PersistentEntity {
 
     private static final long serialVersionUID = 8814997773907565299L;
 
     private LocalDateTime validFrom;
 
     private LocalDateTime validThru;
+    @Version
+    protected Long version;
 
-    public VolatileEntity() {
+    public MutablePersistentEntity() {
     }
 
     public LocalDateTime getValidFrom() {
@@ -70,7 +73,7 @@ public abstract class VolatileEntity extends PersistentEntity {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final VolatileEntity other = (VolatileEntity) obj;
+        final MutablePersistentEntity other = (MutablePersistentEntity) obj;
         if (!Objects.equals(this.validFrom, other.validFrom)) {
             return false;
         }
@@ -78,6 +81,14 @@ public abstract class VolatileEntity extends PersistentEntity {
             return false;
         }
         return true;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
 }

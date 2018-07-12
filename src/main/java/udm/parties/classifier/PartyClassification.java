@@ -20,7 +20,8 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
-import udm.VolatileEntity;
+import javax.persistence.Version;
+import udm.MutablePersistentEntity;
 import udm.parties.Party;
 
 /**
@@ -30,7 +31,7 @@ import udm.parties.Party;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class PartyClassification extends VolatileEntity {
+public abstract class PartyClassification extends MutablePersistentEntity {
 
     private static final long serialVersionUID = 1447936822300888937L;
 
@@ -39,6 +40,8 @@ public abstract class PartyClassification extends VolatileEntity {
 
     @OneToOne
     private PartyType partyType;
+    @Version
+    protected Long version;
 
     public PartyClassification() {
     }
@@ -86,6 +89,14 @@ public abstract class PartyClassification extends VolatileEntity {
             return false;
         }
         return true;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
 }
