@@ -19,7 +19,6 @@ import com.mysema.query.jpa.JPQLQuery;
 import com.mysema.query.jpa.impl.JPAQuery;
 import javax.persistence.EntityManager;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,60 +30,13 @@ import udm.parties.classifier.PartyClassification;
  *
  * @author skrymets
  */
-public class PersonTest extends AbstractTest {
+public class PartyClassificationTest extends AbstractTest {
 
-    private static final Logger LOG = LoggerFactory.getLogger(PersonTest.class);
-
-    @Test
-    //@Ignore
-    public void dumpDB() {
-        try {
-            org.hibernate.Session session = getEntityManager().unwrap(org.hibernate.Session.class);
-            org.hibernate.engine.spi.SessionFactoryImplementor sfImpl = (org.hibernate.engine.spi.SessionFactoryImplementor) session.getSessionFactory();
-            java.sql.Connection jdbcConnection = sfImpl
-                    .getJdbcServices()
-                    .getBootstrapJdbcConnectionAccess()
-                    .obtainConnection();
-
-            try (java.sql.Statement jdbcStatement = jdbcConnection.createStatement()) {
-                java.sql.ResultSet rs = jdbcStatement.executeQuery("SCRIPT TO './DUMP.sql';");
-            }
-
-        } catch (java.sql.SQLException e) {
-            LOG.error(e.getMessage());
-        }
-
-    }
-
-    @Test
-    public void persistPartyTest() {
-        Party party = new Person();
-        getEntityManager().persist(party);
-
-        assertNotNull(party.getId());
-        LOG.info("A new party saved with ID: {}", party.getId());
-    }
-
-    @Test
-    public void persistPersonTest() {
-        Person person = new Person();
-        getEntityManager().persist(person);
-
-        final Long id = person.getId();
-        assertNotNull(id);
-        LOG.info("A new person saved with ID: {}", id);
-
-        person.setGender(Person.Gender.M);
-        person = getEntityManager().merge(person);
-
-        assertEquals(id, person.getId());
-    }
+    private static final Logger LOG = LoggerFactory.getLogger(PartyClassificationTest.class);
 
     @Test
     public void partyClassificationTest() {
         final EntityManager em = getEntityManager();
-
-        LOG.info("Saving the entity");
         em.getTransaction().begin();
 
         Person person = new Person();
