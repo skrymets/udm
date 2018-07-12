@@ -19,8 +19,8 @@ import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.OneToOne;
-import udm.MutablePersistentEntity;
+import javax.persistence.ManyToOne;
+import udm.BusinessEntity;
 import udm.parties.Party;
 
 /**
@@ -30,15 +30,15 @@ import udm.parties.Party;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class PartyClassification extends MutablePersistentEntity {
+public abstract class PartyClassification extends BusinessEntity {
 
     private static final long serialVersionUID = 1447936822300888937L;
 
-    @OneToOne
+    @ManyToOne
     private Party party;
 
-    @OneToOne
-    private PartyType partyType;
+    @ManyToOne
+    private PartyClassificationType partyType;
 
     public PartyClassification() {
     }
@@ -51,11 +51,11 @@ public abstract class PartyClassification extends MutablePersistentEntity {
         this.party = party;
     }
 
-    public PartyType getPartyType() {
+    public PartyClassificationType getPartyType() {
         return partyType;
     }
 
-    public void setPartyType(PartyType partyType) {
+    public void setPartyType(PartyClassificationType partyType) {
         this.partyType = partyType;
     }
 

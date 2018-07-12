@@ -15,34 +15,19 @@
  */
 package udm.parties.roles;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import udm.PersistentEntity;
+import udm.Classifier;
 
 /**
  *
  * @author skrymets
  */
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class RoleType extends PersistentEntity {
+public class PartyRoleType extends Classifier {
 
     private static final long serialVersionUID = 5704600205187968577L;
 
-    @Column(nullable = false)
-    private String description;
-
-    public RoleType() {
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public PartyRoleType() {
     }
 
 }

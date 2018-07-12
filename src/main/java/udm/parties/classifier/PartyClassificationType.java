@@ -15,34 +15,19 @@
  */
 package udm.parties.classifier;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import udm.PersistentEntity;
+import udm.Classifier;
 
 /**
  *
  * @author skrymets
  */
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class PartyType extends PersistentEntity {
+public class PartyClassificationType extends Classifier {
 
     private static final long serialVersionUID = -1735451119505129396L;
 
-    @Column(nullable = false)
-    private String description;
-
-    public PartyType() {
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public PartyClassificationType() {
     }
 
 }

@@ -16,8 +16,10 @@
 package udm.parties.roles;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import udm.MutablePersistentEntity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+import udm.BusinessEntity;
 import udm.parties.Party;
 
 /**
@@ -25,17 +27,39 @@ import udm.parties.Party;
  * @author skrymets
  */
 @Entity
-public abstract class PartyRole extends MutablePersistentEntity {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class PartyRole extends BusinessEntity {
 
     private static final long serialVersionUID = 5704600205187968577L;
 
-    @OneToOne
+    @ManyToOne
     private Party party;
 
-    @OneToOne
-    private RoleType roleType;
+    @ManyToOne
+    private PartyRoleType roleType;
 
     public PartyRole() {
+    }
+
+    public PartyRole(Party party, PartyRoleType roleType) {
+        this.party = party;
+        this.roleType = roleType;
+    }
+
+    public Party getParty() {
+        return party;
+    }
+
+    public void setParty(Party party) {
+        this.party = party;
+    }
+
+    public PartyRoleType getRoleType() {
+        return roleType;
+    }
+
+    public void setRoleType(PartyRoleType roleType) {
+        this.roleType = roleType;
     }
 
 }
