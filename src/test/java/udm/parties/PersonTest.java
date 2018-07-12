@@ -15,16 +15,16 @@
  */
 package udm.parties;
 
-import udm.parties.classifier.PartyClassification;
 import com.mysema.query.jpa.JPQLQuery;
 import com.mysema.query.jpa.impl.JPAQuery;
 import javax.persistence.EntityManager;
-import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import udm.AbstractTest;
 import udm.domain.IncomeClassification;
+import udm.parties.classifier.PartyClassification;
 
 /**
  *

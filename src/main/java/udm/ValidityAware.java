@@ -13,19 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.parties.classifier;
+package udm;
 
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class OrganizationClassification extends PartyClassification {
+/**
+ *
+ * @author skrymets
+ */
+public interface ValidityAware {
 
-    private static final long serialVersionUID = -8673190880218630382L;
+    public LocalDateTime EPOCH_START = LocalDateTime.of(LocalDate.MIN, LocalTime.MIN);
 
-    public OrganizationClassification() {
-    }
+    public LocalDateTime EPOCH_END = LocalDateTime.of(LocalDate.MAX, LocalTime.MAX);
 
-    }
+    boolean isValidNow();
+
+    void validFromNow();
+
+    void validFrom(LocalDateTime dateTime);
+
+    void validThruNow();
+
+    void validThru(LocalDateTime dateTime);
+
+}

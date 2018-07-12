@@ -20,7 +20,6 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
-import javax.persistence.Version;
 import udm.MutablePersistentEntity;
 import udm.parties.Party;
 
@@ -40,8 +39,6 @@ public abstract class PartyClassification extends MutablePersistentEntity {
 
     @OneToOne
     private PartyType partyType;
-    @Version
-    protected Long version;
 
     public PartyClassification() {
     }
@@ -89,14 +86,6 @@ public abstract class PartyClassification extends MutablePersistentEntity {
             return false;
         }
         return true;
-    }
-
-    public Long getVersion() {
-        return version;
-    }
-
-    public void setVersion(Long version) {
-        this.version = version;
     }
 
 }

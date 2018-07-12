@@ -17,14 +17,6 @@ package spy;
 
 import com.p6spy.engine.common.P6Util;
 import com.p6spy.engine.spy.P6SpyOptions;
-import static com.p6spy.engine.spy.appender.CustomLineFormat.CATEGORY;
-import static com.p6spy.engine.spy.appender.CustomLineFormat.CONNECTION_ID;
-import static com.p6spy.engine.spy.appender.CustomLineFormat.CURRENT_TIME;
-import static com.p6spy.engine.spy.appender.CustomLineFormat.EFFECTIVE_SQL;
-import static com.p6spy.engine.spy.appender.CustomLineFormat.EFFECTIVE_SQL_SINGLELINE;
-import static com.p6spy.engine.spy.appender.CustomLineFormat.EXECUTION_TIME;
-import static com.p6spy.engine.spy.appender.CustomLineFormat.SQL;
-import static com.p6spy.engine.spy.appender.CustomLineFormat.SQL_SINGLE_LINE;
 import com.p6spy.engine.spy.appender.MessageFormattingStrategy;
 import com.p6spy.engine.spy.appender.SingleLineFormat;
 import java.util.regex.Matcher;

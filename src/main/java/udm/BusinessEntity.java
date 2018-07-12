@@ -15,29 +15,60 @@
  */
 package udm;
 
+import java.time.LocalDateTime;
+import static java.util.Objects.*;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.Version;
 
 /**
  *
  * @author skrymets
  */
 @MappedSuperclass
-public abstract class BusinessEntity extends MutablePersistentEntity {
+public abstract class BusinessEntity extends MutablePersistentEntity implements ValidityAware {
 
     private static final long serialVersionUID = 249793911463091173L;
-    @Version
-    protected Long version;
+
+    private LocalDateTime validFrom = ValidityAware.EPOCH_START;
+
+    private LocalDateTime validThru = ValidityAware.EPOCH_END;
 
     public BusinessEntity() {
     }
 
-    public Long getVersion() {
-        return version;
+    @Override
+    public boolean isValidNow() {
+        LocalDateTime now = LocalDateTime.now();
+        return (validFrom.compareTo(now) <= 0 && validThru.compareTo(now) >= 0);
     }
 
-    public void setVersion(Long version) {
-        this.version = version;
+    @Override
+    public void validFromNow() {
+        validFrom(LocalDateTime.now());
+    }
+
+    @Override
+    public void validThruNow() {
+        validThru(LocalDateTime.now());
+    }
+
+    @Override
+    public void validFrom(LocalDateTime dateTime) {
+        requireNonNull(dateTime);
+        this.validFrom = dateTime;
+
+        if (this.validThru.compareTo(dateTime) <= 0) { // now or in the past?
+            this.validThru = EPOCH_END;
+        }
+    }
+
+    @Override
+    public void validThru(LocalDateTime dateTime) {
+        requireNonNull(dateTime);
+        this.validThru = dateTime;
+
+        if (this.validFrom.compareTo(dateTime) >= 0) { // now or in the future?
+            this.validFrom = dateTime;
+        }
     }
 
 }

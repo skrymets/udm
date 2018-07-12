@@ -18,15 +18,14 @@ package test.udm.parties;
 import com.mysema.query.jpa.JPQLQuery;
 import com.mysema.query.jpa.impl.JPAQuery;
 import javax.persistence.EntityManager;
-import org.junit.Test;
 import static org.junit.Assert.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import test.udm.AbstractTest;
 import test.udm.domain.IncomeClassification;
-import udm.parties.classifier.PartyClassification;
 import udm.parties.Person;
 import udm.parties.QPerson;
+import udm.parties.classifier.PartyClassification;
 
 /**
  *

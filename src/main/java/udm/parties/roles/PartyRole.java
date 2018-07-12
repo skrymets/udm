@@ -17,7 +17,6 @@ package udm.parties.roles;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
-import javax.persistence.Version;
 import udm.MutablePersistentEntity;
 import udm.parties.Party;
 
@@ -29,24 +28,14 @@ import udm.parties.Party;
 public abstract class PartyRole extends MutablePersistentEntity {
 
     private static final long serialVersionUID = 5704600205187968577L;
-    
+
     @OneToOne
     private Party party;
-    
+
     @OneToOne
     private RoleType roleType;
-    @Version
-    protected Long version;
 
     public PartyRole() {
-    }
-
-    public Long getVersion() {
-        return version;
-    }
-
-    public void setVersion(Long version) {
-        this.version = version;
     }
 
 }

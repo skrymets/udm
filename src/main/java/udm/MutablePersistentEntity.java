@@ -15,8 +15,6 @@
  */
 package udm;
 
-import java.time.LocalDateTime;
-import java.util.Objects;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
 
@@ -29,58 +27,10 @@ public abstract class MutablePersistentEntity extends PersistentEntity {
 
     private static final long serialVersionUID = 8814997773907565299L;
 
-    private LocalDateTime validFrom;
-
-    private LocalDateTime validThru;
     @Version
     protected Long version;
 
     public MutablePersistentEntity() {
-    }
-
-    public LocalDateTime getValidFrom() {
-        return validFrom;
-    }
-
-    public void setValidFrom(LocalDateTime validFrom) {
-        this.validFrom = validFrom;
-    }
-
-    public LocalDateTime getValidThru() {
-        return validThru;
-    }
-
-    public void setValidThru(LocalDateTime validThru) {
-        this.validThru = validThru;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 79 * hash + Objects.hashCode(this.validFrom);
-        hash = 79 * hash + Objects.hashCode(this.validThru);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final MutablePersistentEntity other = (MutablePersistentEntity) obj;
-        if (!Objects.equals(this.validFrom, other.validFrom)) {
-            return false;
-        }
-        if (!Objects.equals(this.validThru, other.validThru)) {
-            return false;
-        }
-        return true;
     }
 
     public Long getVersion() {

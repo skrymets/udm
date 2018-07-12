@@ -15,10 +15,10 @@
  */
 package udm.parties;
 
-import udm.BusinessEntity;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import udm.BusinessEntity;
 
 /**
  *
