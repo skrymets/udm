@@ -22,6 +22,7 @@ import com.p6spy.engine.spy.appender.SingleLineFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.hibernate.engine.jdbc.internal.BasicFormatterImpl;
+import org.hibernate.engine.jdbc.internal.DDLFormatterImpl;
 import org.hibernate.engine.jdbc.internal.Formatter;
 
 /**
@@ -40,6 +41,7 @@ public class SpySQLFormatter implements MessageFormattingStrategy {
     public static final String SQL_SINGLE_LINE = "%(sqlSingleLine)";
 
     private static final Formatter HB_FORMATTER = new BasicFormatterImpl();
+    private static final Formatter HB_DDL_FORMATTER = new DDLFormatterImpl();
     private static final MessageFormattingStrategy FALLBACK_FORMATTING = new SingleLineFormat();
 
     @Override
@@ -54,15 +56,25 @@ public class SpySQLFormatter implements MessageFormattingStrategy {
             // Someone forgot to configure customLogMessageFormat: fall back to built-in
             return FALLBACK_FORMATTING.formatMessage(connectionId, now, elapsed, category, prepared, sql);
         }
+        final String lc_sql = sql.toLowerCase();
+
+        boolean isDDL = (lc_sql.contains("create ")
+                || lc_sql.contains("drop ")
+                || lc_sql.contains("alter ")
+                || lc_sql.contains("constraint "));
+
+        final String formattedSql = isDDL
+                ? HB_DDL_FORMATTER.format(sql)
+                : HB_FORMATTER.format(sql);
 
         return customLogMessageFormat
                 .replaceAll(Pattern.quote(CONNECTION_ID), Integer.toString(connectionId))
                 .replaceAll(Pattern.quote(CURRENT_TIME), now)
                 .replaceAll(Pattern.quote(EXECUTION_TIME), Long.toString(elapsed))
                 .replaceAll(Pattern.quote(CATEGORY), category)
-                .replaceAll(Pattern.quote(EFFECTIVE_SQL), Matcher.quoteReplacement(HB_FORMATTER.format(sql)))
+                .replaceAll(Pattern.quote(EFFECTIVE_SQL), Matcher.quoteReplacement(formattedSql))
                 .replaceAll(Pattern.quote(EFFECTIVE_SQL_SINGLELINE), Matcher.quoteReplacement(P6Util.singleLine(prepared)))
-                .replaceAll(Pattern.quote(SQL), Matcher.quoteReplacement(HB_FORMATTER.format(sql)))
+                .replaceAll(Pattern.quote(SQL), Matcher.quoteReplacement(formattedSql))
                 .replaceAll(Pattern.quote(SQL_SINGLE_LINE), Matcher.quoteReplacement(P6Util.singleLine(sql)));
     }
 
