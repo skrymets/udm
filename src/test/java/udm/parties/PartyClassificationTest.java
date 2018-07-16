@@ -15,8 +15,8 @@
  */
 package udm.parties;
 
-import com.mysema.query.jpa.JPQLQuery;
-import com.mysema.query.jpa.impl.JPAQuery;
+import java.time.LocalDateTime;
+import java.util.List;
 import javax.persistence.EntityManager;
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -25,6 +25,8 @@ import org.slf4j.LoggerFactory;
 import udm.AbstractTest;
 import udm.domain.IncomeClassification;
 import udm.parties.classifier.PartyClassification;
+import udm.parties.classifier.PartyClassificationType;
+import udm.parties.classifier.QPartyClassification;
 
 /**
  *
@@ -44,21 +46,35 @@ public class PartyClassificationTest extends AbstractTest {
         person.setLastName("Doe");
         person.setGender(Person.Gender.M);
 
+        PartyClassificationType partyType = new PartyClassificationType();
+        partyType.setDescription("Student");
+
         PartyClassification classification = new IncomeClassification();
         classification.setParty(person);
+        classification.setPartyType(partyType);
+        classification.validFrom(LocalDateTime.now().minusDays(1));
 
         em.persist(person);
+        em.persist(partyType);
         em.persist(classification);
 
         em.getTransaction().commit();
 
         // -------------------------------------------------------------------------------
-        JPQLQuery query = new JPAQuery(em);
+        QPartyClassification qpc = QPartyClassification.partyClassification;
 
+        List<PartyClassification> persons = jpaQueryFactory.selectFrom(qpc)
+                .where(qpc.validNow())
+                .fetch();
+
+        assertNotNull(persons);
+        assertFalse(persons.isEmpty());
+
+        // -------------------------------------------------------------------------------        
         QPerson dslPerson = QPerson.person;
-        Person dslReturnedPerson = query.from(dslPerson)
+        Person dslReturnedPerson = jpaQueryFactory.selectFrom(dslPerson)
                 .where(dslPerson.id.eq(person.getId()))
-                .uniqueResult(dslPerson);
+                .fetchOne();
 
         assertEquals(classification.getParty(), dslReturnedPerson);
 

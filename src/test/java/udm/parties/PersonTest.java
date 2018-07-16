@@ -15,17 +15,15 @@
  */
 package udm.parties;
 
-import com.mysema.query.jpa.JPQLQuery;
-import com.mysema.query.jpa.impl.JPAQuery;
 import javax.persistence.EntityManager;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import udm.AbstractTest;
 import udm.domain.IncomeClassification;
 import udm.parties.classifier.PartyClassification;
+import udm.parties.classifier.PartyClassificationType;
 
 /**
  *
@@ -34,27 +32,6 @@ import udm.parties.classifier.PartyClassification;
 public class PersonTest extends AbstractTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(PersonTest.class);
-
-    @Test
-    //@Ignore
-    public void dumpDB() {
-        try {
-            org.hibernate.Session session = getEntityManager().unwrap(org.hibernate.Session.class);
-            org.hibernate.engine.spi.SessionFactoryImplementor sfImpl = (org.hibernate.engine.spi.SessionFactoryImplementor) session.getSessionFactory();
-            java.sql.Connection jdbcConnection = sfImpl
-                    .getJdbcServices()
-                    .getBootstrapJdbcConnectionAccess()
-                    .obtainConnection();
-
-            try (java.sql.Statement jdbcStatement = jdbcConnection.createStatement()) {
-                java.sql.ResultSet rs = jdbcStatement.executeQuery("SCRIPT TO './DUMP.sql';");
-            }
-
-        } catch (java.sql.SQLException e) {
-            LOG.error(e.getMessage());
-        }
-
-    }
 
     @Test
     public void persistPartyTest() {
@@ -92,21 +69,25 @@ public class PersonTest extends AbstractTest {
         person.setLastName("Doe");
         person.setGender(Person.Gender.M);
 
+        PartyClassificationType partyType = new PartyClassificationType();
+        partyType.setDescription("Student");
+
         PartyClassification classification = new IncomeClassification();
         classification.setParty(person);
+        classification.setPartyType(partyType);
+        classification.validFromNow();
 
         em.persist(person);
+        em.persist(partyType);
         em.persist(classification);
 
         em.getTransaction().commit();
 
         // -------------------------------------------------------------------------------
-        JPQLQuery query = new JPAQuery(em);
-
         QPerson dslPerson = QPerson.person;
-        Person dslReturnedPerson = query.from(dslPerson)
+        Person dslReturnedPerson = jpaQueryFactory.selectFrom(dslPerson)
                 .where(dslPerson.id.eq(person.getId()))
-                .uniqueResult(dslPerson);
+                .fetchOne();
 
         assertEquals(classification.getParty(), dslReturnedPerson);
 
@@ -117,6 +98,29 @@ public class PersonTest extends AbstractTest {
 
         assertNotNull(hqlReturnedPerson);
         assertEquals(classification.getParty(), hqlReturnedPerson);
+        
+        dumpDB();
     }
 
+
+    //@Test
+    //@Ignore
+    public void dumpDB() {
+        try {
+            org.hibernate.Session session = getEntityManager().unwrap(org.hibernate.Session.class);
+            org.hibernate.engine.spi.SessionFactoryImplementor sfImpl = (org.hibernate.engine.spi.SessionFactoryImplementor) session.getSessionFactory();
+            java.sql.Connection jdbcConnection = sfImpl
+                    .getJdbcServices()
+                    .getBootstrapJdbcConnectionAccess()
+                    .obtainConnection();
+
+            try (java.sql.Statement jdbcStatement = jdbcConnection.createStatement()) {
+                java.sql.ResultSet rs = jdbcStatement.executeQuery("SCRIPT TO './DUMP.sql';");
+            }
+
+        } catch (java.sql.SQLException e) {
+            LOG.error(e.getMessage());
+        }
+    }
+    
 }

@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import udm.parties.Person;
+import udm.domain.roles.DivisionRole;
 
 /**
  *
@@ -36,50 +36,50 @@ public class ValidityTest {
     @Test
     public void testValidByDefault() {
 
-        Person person = new Person();
-        assertTrue(person.isValidNow());
+        DivisionRole role = new DivisionRole();
+        assertTrue(role.isValidNow());
 
     }
 
     @Test
     public void testValidFromAMomentAgo() {
 
-        Person person = new Person();
-        person.validFromNow();
+        DivisionRole role = new DivisionRole();
+        role.validFromNow();
 
-        assertTrue(person.isValidNow());
+        assertTrue(role.isValidNow());
 
     }
 
     @Test
     public void testNotValidAnymore() throws InterruptedException {
 
-        Person person = new Person();
-        assertTrue(person.isValidNow());
+        DivisionRole role = new DivisionRole();
+        assertTrue(role.isValidNow());
 
-        person.validThruNow();
+        role.validThruNow();
 
         // Workaround: 
         // It seems that (reardless of the documentation) nanoseconds aren't donsidered 
         // in comparation of the dates. But the CPU cpu is too fast, to spend at least 
         // millisecond between calls. So we should help him.
         Thread.sleep(1);
-        assertFalse(person.isValidNow());
+        assertFalse(role.isValidNow());
 
     }
 
     @Test
     public void testCantBeInvalidAndValidAtTheSameTime() {
 
-        Person person = new Person();
-        assertTrue(person.isValidNow());
+        DivisionRole role = new DivisionRole();
+        assertTrue(role.isValidNow());
 
         LocalDateTime aDayBefore = LocalDateTime.now().minusDays(1);
         LocalDateTime inOneDay = LocalDateTime.now().plusDays(1);
 
-        person.validThru(aDayBefore);
-        person.validFrom(inOneDay);
-        assertFalse(person.isValidNow());
+        role.validThru(aDayBefore);
+        role.validFrom(inOneDay);
+        assertFalse(role.isValidNow());
 
     }
 

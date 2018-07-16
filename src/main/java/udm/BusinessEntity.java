@@ -17,6 +17,7 @@ package udm;
 
 import java.time.LocalDateTime;
 import static java.util.Objects.*;
+import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
 /**
@@ -28,8 +29,10 @@ public abstract class BusinessEntity extends MutablePersistentEntity implements 
 
     private static final long serialVersionUID = 249793911463091173L;
 
+    @Column
     private LocalDateTime validFrom = ValidityAware.EPOCH_START;
 
+    @Column
     private LocalDateTime validThru = ValidityAware.EPOCH_END;
 
     public BusinessEntity() {
