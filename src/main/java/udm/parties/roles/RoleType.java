@@ -16,17 +16,21 @@
 package udm.parties.roles;
 
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import static javax.persistence.InheritanceType.JOINED;
+import udm.Classifier;
 
 /**
  *
  * @author skrymets
  */
 @Entity
-public class PartyRoleType extends RoleType {
+@Inheritance(strategy = JOINED)
+public abstract class RoleType extends Classifier {
 
-    private static final long serialVersionUID = 5704600205187968577L;
+    private static final long serialVersionUID = -1451526790422664271L;
 
-    public PartyRoleType() {
+    public RoleType() {
     }
 
 }
