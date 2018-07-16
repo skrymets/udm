@@ -18,7 +18,7 @@ package udm.parties;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import udm.BusinessEntity;
+import udm.MutablePersistentEntity;
 
 /**
  *
@@ -26,7 +26,7 @@ import udm.BusinessEntity;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Party extends BusinessEntity {
+public abstract class Party extends MutablePersistentEntity {
 
     private static final long serialVersionUID = -113357481482772294L;
 
