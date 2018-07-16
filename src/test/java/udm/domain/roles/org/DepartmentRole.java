@@ -13,18 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.domain;
+package udm.domain.roles.org;
 
 import javax.persistence.Entity;
-import udm.parties.classifier.OrganizationClassification;
+import udm.parties.roles.OrganizationRole;
 
 /**
  *
  * @author skrymets
  */
 @Entity
-public class IndustryClassification extends OrganizationClassification {
+public class DepartmentRole extends OrganizationRole {
 
-    private static final long serialVersionUID = 1395612306819675962L;
+    private static final long serialVersionUID = 6089283164113549615L;
+
+    public DepartmentRole() {
+    }
 
 }

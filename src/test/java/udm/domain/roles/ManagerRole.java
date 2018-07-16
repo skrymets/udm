@@ -16,18 +16,18 @@
 package udm.domain.roles;
 
 import javax.persistence.Entity;
-import udm.parties.roles.OrganizationRole;
+import udm.parties.roles.PersonRole;
 
 /**
  *
  * @author skrymets
  */
 @Entity
-public class CompetitorRole extends OrganizationRole {
+public class ManagerRole extends PersonRole {
 
-    private static final long serialVersionUID = 6089283164113549615L;
+    private static final long serialVersionUID = -7007303889019257428L;
 
-    public CompetitorRole() {
+    public ManagerRole() {
     }
 
 }
