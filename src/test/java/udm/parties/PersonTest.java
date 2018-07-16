@@ -21,7 +21,6 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import udm.AbstractTest;
-import udm.dao.CDI;
 import udm.dao.PartyClassificationDAO;
 import udm.dao.PartyClassificationTypeDAO;
 import udm.dao.PersonDAO;

@@ -25,6 +25,9 @@ import org.slf4j.LoggerFactory;
 import udm.AbstractTest;
 import udm.dao.CDI;
 import udm.dao.CDI.PersistenceContext;
+import udm.dao.PartyClassificationDAO;
+import udm.dao.PartyClassificationTypeDAO;
+import udm.dao.PersonDAO;
 import udm.domain.IncomeClassification;
 import udm.parties.classifier.PartyClassification;
 import udm.parties.classifier.PartyClassificationType;
@@ -38,31 +41,31 @@ public class PartyClassificationTest extends AbstractTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(PartyClassificationTest.class);
 
+    private final PersonDAO personDAO = new PersonDAO();
+    private final PartyClassificationDAO classificationDAO = new PartyClassificationDAO();
+    private final PartyClassificationTypeDAO typeDAO = new PartyClassificationTypeDAO();
+
     @Test
     public void partyClassificationTest() {
-        final EntityManager em = getEntityManager();
-        // em.getTransaction().begin();
-        // PersistenceContext.beginTransaction();
 
         Person person = new Person();
         person.setFirstName("John");
         person.setLastName("Doe");
         person.setGender(Person.Gender.M);
 
+        personDAO.create(person);
+
         PartyClassificationType partyType = new PartyClassificationType();
         partyType.setDescription("Student");
+
+        typeDAO.create(partyType);
 
         PartyClassification classification = new IncomeClassification();
         classification.setParty(person);
         classification.setPartyType(partyType);
         classification.validFrom(LocalDateTime.now().minusDays(1));
 
-        em.persist(person);
-        em.persist(partyType);
-        em.persist(classification);
-
-        //em.getTransaction().commit();
-        // PersistenceContext.commit();
+        classificationDAO.create(classification);
 
         // -------------------------------------------------------------------------------
         QPartyClassification qpc = QPartyClassification.partyClassification;
@@ -83,7 +86,8 @@ public class PartyClassificationTest extends AbstractTest {
         assertEquals(classification.getParty(), dslReturnedPerson);
 
         // -------------------------------------------------------------------------------
-        Person hqlReturnedPerson = (Person) em.createQuery("SELECT p from Person p WHERE p.id = :person_id")
+        Person hqlReturnedPerson = (Person) PersistenceContext.getEntityManager()
+                .createQuery("SELECT p from Person p WHERE p.id = :person_id")
                 .setParameter("person_id", person.getId())
                 .getSingleResult();
 

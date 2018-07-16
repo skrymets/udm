@@ -16,7 +16,6 @@
 package udm.dao;
 
 import udm.Classifier;
-import udm.parties.classifier.PartyClassification;
 
 public class PartyClassificationTypeDAO extends AbstractDAO<Classifier> {
 
