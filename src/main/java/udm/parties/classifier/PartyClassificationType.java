@@ -15,7 +15,11 @@
  */
 package udm.parties.classifier;
 
+import java.util.ArrayList;
+import java.util.List;
+import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import udm.Classifier;
 
 /**
@@ -27,7 +31,22 @@ public class PartyClassificationType extends Classifier {
 
     private static final long serialVersionUID = -1735451119505129396L;
 
+    @OneToMany(
+            mappedBy = "classificationType",
+            cascade = ALL, orphanRemoval = true
+    )
+    private List<PartyClassification> partyClassifications = new ArrayList<>();
+
     public PartyClassificationType() {
+    }
+
+    public boolean addPartyClassification(PartyClassification pc) {
+        pc.setClassificationType(this);
+        return partyClassifications.add(pc);
+    }
+
+    public boolean removePartyClassification(PartyClassification pc) {
+        return partyClassifications.remove(pc);
     }
 
 }

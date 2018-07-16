@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.parties.roles;
+package udm.parties.relationships;
 
 import javax.persistence.Entity;
 import udm.Classifier;
@@ -23,11 +23,11 @@ import udm.Classifier;
  * @author skrymets
  */
 @Entity
-public abstract class RoleType extends Classifier {
+public class PartyRelationshipType extends Classifier {
 
     private static final long serialVersionUID = -1451526790422664271L;
 
-    public RoleType() {
+    public PartyRelationshipType() {
     }
 
 }

@@ -51,19 +51,22 @@ public class PartyClassificationTest extends AbstractTest {
         person.setLastName("Doe");
         person.setGender(Person.Gender.M);
 
-        personDAO.create(person);
-
         PartyClassificationType partyType = new PartyClassificationType();
         partyType.setDescription("Student");
 
+        personDAO.create(person);
         typeDAO.create(partyType);
 
         PartyClassification classification = new IncomeClassification();
-        classification.setParty(person);
-        classification.setPartyType(partyType);
         classification.validFrom(LocalDateTime.now().minusDays(1));
-
+        partyType.addPartyClassification(classification);
+        person.addPartyClassification(classification);
+        // classification.setParty(person);
+        // classification.setClassificationType(partyType);
         classificationDAO.create(classification);
+
+        personDAO.update(person);
+        typeDAO.update(partyType);
 
         // -------------------------------------------------------------------------------
         QPartyClassification qpc = QPartyClassification.partyClassification;

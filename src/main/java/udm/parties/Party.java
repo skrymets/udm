@@ -15,10 +15,15 @@
  */
 package udm.parties;
 
+import java.util.ArrayList;
+import java.util.List;
+import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import udm.MutablePersistentEntity;
+import udm.parties.classifier.PartyClassification;
 
 /**
  *
@@ -29,5 +34,20 @@ import udm.MutablePersistentEntity;
 public abstract class Party extends MutablePersistentEntity {
 
     private static final long serialVersionUID = -113357481482772294L;
+
+    @OneToMany(
+            mappedBy = "party",
+            cascade = ALL, orphanRemoval = true
+    )
+    private List<PartyClassification> partyClassification = new ArrayList<>();
+
+    public boolean addPartyClassification(PartyClassification pc) {
+        pc.setParty(this);
+        return partyClassification.add(pc);
+    }
+
+    public boolean removePartyClassification(PartyClassification pc) {
+        return partyClassification.remove(pc);
+    }
 
 }

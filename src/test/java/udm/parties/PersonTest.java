@@ -89,7 +89,7 @@ public class PersonTest extends AbstractTest {
 
         PartyClassification classification = new IncomeClassification();
         classification.setParty(person);
-        classification.setPartyType(partyType);
+        classification.setClassificationType(partyType);
         classification.validFromNow();
 
         classificationDAO.create(classification);
