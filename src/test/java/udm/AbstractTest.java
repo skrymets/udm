@@ -15,6 +15,7 @@
  */
 package udm;
 
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -33,6 +34,7 @@ public abstract class AbstractTest {
 
     private static EntityManagerFactory entityManagerFactory;
     protected EntityManager entityManager;
+    protected JPAQueryFactory jpaQueryFactory;
 
     public AbstractTest() {
     }
@@ -50,6 +52,9 @@ public abstract class AbstractTest {
     @Before
     public void setUp() {
         entityManager = entityManagerFactory.createEntityManager();
+        jpaQueryFactory = new JPAQueryFactory(() -> {
+            return entityManager;
+        });
     }
 
     @After
