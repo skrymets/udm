@@ -30,7 +30,7 @@ public interface GenericDao<T extends PersistentEntity> {
         return PersistenceContext.getEntityManager();
     }
 
-    public Class<T> entityClass();
+    public Class<T> getEntityClass();
 
     public default T create(T t) {
         entityManager().persist(t);
@@ -38,7 +38,7 @@ public interface GenericDao<T extends PersistentEntity> {
     }
 
     public default T read(Long id) {
-        return entityManager().find(entityClass(), id);
+        return entityManager().find(getEntityClass(), id);
     }
 
     public default T update(T t) {

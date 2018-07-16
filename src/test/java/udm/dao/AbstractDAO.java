@@ -33,7 +33,7 @@ public abstract class AbstractDAO<T extends PersistentEntity> implements Generic
     }
 
     @Override
-    public Class<T> entityClass() {
+    public Class<T> getEntityClass() {
         return entityClass;
     }
 
