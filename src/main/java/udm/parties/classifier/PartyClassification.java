@@ -34,10 +34,10 @@ public abstract class PartyClassification extends BusinessEntity {
 
     private static final long serialVersionUID = 1447936822300888937L;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Party party;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private PartyClassificationType partyType;
 
     public PartyClassification() {

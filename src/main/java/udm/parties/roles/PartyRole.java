@@ -32,10 +32,10 @@ public abstract class PartyRole extends BusinessEntity {
 
     private static final long serialVersionUID = 5704600205187968577L;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Party party;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private PartyRoleType roleType;
 
     public PartyRole() {
