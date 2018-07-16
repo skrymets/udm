@@ -17,12 +17,9 @@ package udm;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
+import udm.dao.CDI.PersistenceContext;
 
 /**
  *
@@ -30,40 +27,29 @@ import org.junit.BeforeClass;
  */
 public abstract class AbstractTest {
 
-    private static final String UDM_TEST_PU = "udm_test_PU";
-
-    private static EntityManagerFactory entityManagerFactory;
-    protected EntityManager entityManager;
     protected JPAQueryFactory jpaQueryFactory;
 
     public AbstractTest() {
     }
 
-    @BeforeClass
-    public static void setUpClass() {
-        entityManagerFactory = Persistence.createEntityManagerFactory(UDM_TEST_PU);
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-        entityManagerFactory.close();
-    }
-
     @Before
-    public void setUp() {
-        entityManager = entityManagerFactory.createEntityManager();
+    public void setUpJPA() {
+        PersistenceContext.createEntityManager();
+        EntityManager em = PersistenceContext.getEntityManager();
         jpaQueryFactory = new JPAQueryFactory(() -> {
-            return entityManager;
+            return em;
         });
+        PersistenceContext.beginTransaction();
     }
 
     @After
-    public void tearDown() {
-        entityManager.close();
+    public void tearDownJPA() {        
+        PersistenceContext.rollback();
+        PersistenceContext.getEntityManager().close();
     }
 
     public final EntityManager getEntityManager() {
-        return entityManager;
+        return PersistenceContext.getEntityManager();
     }
 
 }

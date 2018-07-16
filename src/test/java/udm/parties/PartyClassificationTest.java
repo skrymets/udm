@@ -23,6 +23,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import udm.AbstractTest;
+import udm.dao.CDI;
+import udm.dao.CDI.PersistenceContext;
 import udm.domain.IncomeClassification;
 import udm.parties.classifier.PartyClassification;
 import udm.parties.classifier.PartyClassificationType;
@@ -39,7 +41,8 @@ public class PartyClassificationTest extends AbstractTest {
     @Test
     public void partyClassificationTest() {
         final EntityManager em = getEntityManager();
-        em.getTransaction().begin();
+        // em.getTransaction().begin();
+        // PersistenceContext.beginTransaction();
 
         Person person = new Person();
         person.setFirstName("John");
@@ -58,7 +61,8 @@ public class PartyClassificationTest extends AbstractTest {
         em.persist(partyType);
         em.persist(classification);
 
-        em.getTransaction().commit();
+        //em.getTransaction().commit();
+        // PersistenceContext.commit();
 
         // -------------------------------------------------------------------------------
         QPartyClassification qpc = QPartyClassification.partyClassification;

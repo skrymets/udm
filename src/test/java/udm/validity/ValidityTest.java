@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import udm.domain.roles.DivisionRole;
+import udm.domain.roles.org.DepartmentRole;
 
 /**
  *
@@ -36,7 +36,7 @@ public class ValidityTest {
     @Test
     public void testValidByDefault() {
 
-        DivisionRole role = new DivisionRole();
+        DepartmentRole role = new DepartmentRole();
         assertTrue(role.isValidNow());
 
     }
@@ -44,7 +44,7 @@ public class ValidityTest {
     @Test
     public void testValidFromAMomentAgo() {
 
-        DivisionRole role = new DivisionRole();
+        DepartmentRole role = new DepartmentRole();
         role.validFromNow();
 
         assertTrue(role.isValidNow());
@@ -54,7 +54,7 @@ public class ValidityTest {
     @Test
     public void testNotValidAnymore() throws InterruptedException {
 
-        DivisionRole role = new DivisionRole();
+        DepartmentRole role = new DepartmentRole();
         assertTrue(role.isValidNow());
 
         role.validThruNow();
@@ -71,7 +71,7 @@ public class ValidityTest {
     @Test
     public void testCantBeInvalidAndValidAtTheSameTime() {
 
-        DivisionRole role = new DivisionRole();
+        DepartmentRole role = new DepartmentRole();
         assertTrue(role.isValidNow());
 
         LocalDateTime aDayBefore = LocalDateTime.now().minusDays(1);
