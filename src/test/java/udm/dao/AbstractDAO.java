@@ -13,21 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.domain.roles;
+package udm.dao;
 
-import javax.persistence.Entity;
-import udm.parties.roles.OrganizationRole;
+import java.lang.reflect.ParameterizedType;
+import udm.PersistentEntity;
 
 /**
  *
  * @author skrymets
+ * @param <T>
  */
-@Entity
-public class CompetitorRole extends OrganizationRole {
+public abstract class AbstractDAO<T extends PersistentEntity> implements GenericDao<T> {
 
-    private static final long serialVersionUID = 6089283164113549615L;
+    private final Class<T> entityClass;
 
-    public CompetitorRole() {
+    public AbstractDAO() {
+        ParameterizedType genericSuperclass = (ParameterizedType) getClass().getGenericSuperclass();
+        entityClass = (Class<T>) genericSuperclass.getActualTypeArguments()[0];
+    }
+
+    @Override
+    public Class<T> getEntityClass() {
+        return entityClass;
     }
 
 }

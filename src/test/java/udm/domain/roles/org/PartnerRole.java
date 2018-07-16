@@ -13,21 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.domain.roles;
+package udm.domain.roles.org;
 
 import javax.persistence.Entity;
-import udm.parties.roles.PersonRole;
+import udm.parties.roles.OrganizationRole;
 
 /**
  *
  * @author skrymets
  */
 @Entity
-public class ContractorRole extends PersonRole {
+public class PartnerRole extends OrganizationRole {
 
-    private static final long serialVersionUID = 7130437783598014293L;
+    private static final long serialVersionUID = 1149699252464559360L;
 
-    public ContractorRole() {
+    public PartnerRole() {
     }
 
 }

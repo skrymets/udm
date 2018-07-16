@@ -13,21 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.domain.roles;
+package udm.dao;
 
-import javax.persistence.Entity;
-import udm.parties.roles.PartyRole;
+import udm.Classifier;
 
-/**
- *
- * @author skrymets
- */
-@Entity
-public class FamilyMemberRole extends PartyRole {
+public class PartyClassificationTypeDAO extends AbstractDAO<Classifier> {
 
-    private static final long serialVersionUID = -1073638182174457559L;
-
-    public FamilyMemberRole() {
+    public PartyClassificationTypeDAO() {
+        super();
     }
 
 }

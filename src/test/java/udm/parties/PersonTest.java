@@ -21,6 +21,9 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import udm.AbstractTest;
+import udm.dao.PartyClassificationDAO;
+import udm.dao.PartyClassificationTypeDAO;
+import udm.dao.PersonDAO;
 import udm.domain.IncomeClassification;
 import udm.parties.classifier.PartyClassification;
 import udm.parties.classifier.PartyClassificationType;
@@ -33,26 +36,35 @@ public class PersonTest extends AbstractTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(PersonTest.class);
 
-    @Test
-    public void persistPartyTest() {
-        Party party = new Person();
-        getEntityManager().persist(party);
+    private final PersonDAO personDAO = new PersonDAO();
+    private final PartyClassificationDAO classificationDAO = new PartyClassificationDAO();
+    private final PartyClassificationTypeDAO typeDAO = new PartyClassificationTypeDAO();
 
-        assertNotNull(party.getId());
+    @Test
+    public void persistPartyWithDAOTest() {
+        Person party = personDAO.create(new Person());
+        Long partyId = party.getId();
+
+        final QParty pty = QParty.party;
+        Party persistedParty = jpaQueryFactory.selectFrom(pty)
+                .where(pty.id.eq(partyId))
+                .fetchOne();
+
+        assertNotNull(persistedParty);
         LOG.info("A new party saved with ID: {}", party.getId());
+
     }
 
     @Test
     public void persistPersonTest() {
-        Person person = new Person();
-        getEntityManager().persist(person);
+        Person person = personDAO.create(new Person());
 
         final Long id = person.getId();
         assertNotNull(id);
         LOG.info("A new person saved with ID: {}", id);
 
         person.setGender(Person.Gender.M);
-        person = getEntityManager().merge(person);
+        person = personDAO.update(person);
 
         assertEquals(id, person.getId());
     }
@@ -62,26 +74,25 @@ public class PersonTest extends AbstractTest {
         final EntityManager em = getEntityManager();
 
         LOG.info("Saving the entity");
-        em.getTransaction().begin();
 
         Person person = new Person();
         person.setFirstName("John");
         person.setLastName("Doe");
         person.setGender(Person.Gender.M);
 
+        personDAO.create(person);
+
         PartyClassificationType partyType = new PartyClassificationType();
         partyType.setDescription("Student");
+
+        typeDAO.create(partyType);
 
         PartyClassification classification = new IncomeClassification();
         classification.setParty(person);
         classification.setPartyType(partyType);
         classification.validFromNow();
 
-        em.persist(person);
-        em.persist(partyType);
-        em.persist(classification);
-
-        em.getTransaction().commit();
+        classificationDAO.create(classification);
 
         // -------------------------------------------------------------------------------
         QPerson dslPerson = QPerson.person;
@@ -98,13 +109,10 @@ public class PersonTest extends AbstractTest {
 
         assertNotNull(hqlReturnedPerson);
         assertEquals(classification.getParty(), hqlReturnedPerson);
-        
-        dumpDB();
+
+        //dumpDB();
     }
 
-
-    //@Test
-    //@Ignore
     public void dumpDB() {
         try {
             org.hibernate.Session session = getEntityManager().unwrap(org.hibernate.Session.class);
@@ -122,5 +130,5 @@ public class PersonTest extends AbstractTest {
             LOG.error(e.getMessage());
         }
     }
-    
+
 }
