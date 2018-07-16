@@ -18,6 +18,7 @@ package udm;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.Month;
 
 /**
  *
@@ -27,7 +28,7 @@ public interface ValidityAware {
 
     public LocalDateTime EPOCH_START = LocalDateTime.of(LocalDate.MIN, LocalTime.MIN);
 
-    public LocalDateTime EPOCH_END = LocalDateTime.of(LocalDate.MAX, LocalTime.MAX);
+    public LocalDateTime EPOCH_END = LocalDateTime.of(LocalDate.of(9999, Month.DECEMBER, 31), LocalTime.MAX);
 
     boolean isValidNow();
 
