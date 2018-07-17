@@ -15,10 +15,35 @@
  */
 package udm.geo;
 
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+
 /**
  *
  * @author skrymets
  */
 public class County extends GeorgraphicBoundary {
-    
+
+    private static final long serialVersionUID = 1895218135023943003L;
+
+    @OneToMany(
+            mappedBy = "county",
+            fetch = FetchType.LAZY, orphanRemoval = true,
+            cascade = CascadeType.ALL
+    )
+    private List<CountyCity> countiesCities;
+
+    public County() {
+    }
+
+    public boolean addCountyCity(CountyCity cc) {
+        cc.setCounty(this);
+        return countiesCities.add(cc);
+    }
+
+    public boolean removeCountyCity(CountyCity cc) {
+        return countiesCities.remove(cc);
+    }
 }

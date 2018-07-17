@@ -15,28 +15,14 @@
  */
 package udm.geo;
 
-import javax.persistence.ManyToOne;
-
 /**
  *
  * @author skrymets
  */
-public class Province extends GeorgraphicBoundary {
+public class Province extends Region {
 
     private static final long serialVersionUID = -5474462015760627491L;
 
-    @ManyToOne(optional = false)
-    private Country country;
-
     public Province() {
     }
-
-    public Country getCountry() {
-        return country;
-    }
-
-    public void setCountry(Country country) {
-        this.country = country;
-    }
-
 }
