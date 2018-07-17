@@ -21,7 +21,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import udm.MutablePersistentEntity;
-import udm.classifiers.status.CaseStatusType;
+import udm.classifiers.status.CommunicationCaseStatusType;
 
 /**
  *
@@ -38,9 +38,9 @@ public class CommunicationCase extends MutablePersistentEntity {
     @Column(nullable = false)
     private LocalDateTime created;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn
-    private CaseStatusType caseStatusType;
+    private CommunicationCaseStatusType communicationCaseStatusType;
 
     public CommunicationCase() {
     }
@@ -61,12 +61,12 @@ public class CommunicationCase extends MutablePersistentEntity {
         this.created = created;
     }
 
-    public CaseStatusType getCaseStatusType() {
-        return caseStatusType;
+    public CommunicationCaseStatusType getCommunicationCaseStatusType() {
+        return communicationCaseStatusType;
     }
 
-    public void setCaseStatusType(CaseStatusType caseStatusType) {
-        this.caseStatusType = caseStatusType;
+    public void setCommunicationCaseStatusType(CommunicationCaseStatusType ccst) {
+        this.communicationCaseStatusType = ccst;
     }
 
 }

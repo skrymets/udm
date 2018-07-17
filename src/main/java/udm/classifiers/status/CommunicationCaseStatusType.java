@@ -24,22 +24,22 @@ import javax.persistence.OneToMany;
 import udm.communication.CommunicationCase;
 
 @Entity
-public class CaseStatusType extends AbstractStatusType {
+public class CommunicationCaseStatusType extends AbstractStatusType {
 
     private static final long serialVersionUID = 6131305133780722324L;
 
     @OneToMany(
-            mappedBy = "caseStatusType",
+            mappedBy = "communicationCaseStatusType",
             fetch = FetchType.LAZY, orphanRemoval = true,
             cascade = CascadeType.ALL
     )
     private List<CommunicationCase> communicationCases = new ArrayList<>();
 
-    public CaseStatusType() {
+    public CommunicationCaseStatusType() {
     }
 
     public boolean addCommunicationCase(CommunicationCase cc) {
-        cc.setCaseStatusType(this);
+        cc.setCommunicationCaseStatusType(this);
         return communicationCases.add(cc);
     }
 
