@@ -34,10 +34,20 @@
             <property name="hibernate.format_sql" value="false"/>
             <property name="hibernate.use_sql_comments" value="false"/>
             
-            <property name="hibernate.generate_statistics" value="true"/>
-
-            <property name="hibernate.jdbc.time_zone" value="UTC"/>
+            <!--<property name="hibernate.connection.datasource" value="java:/comp/env/jdbc/tes"/>-->
+            <!--
+            TRANSACTION_NONE             = 0;
+            TRANSACTION_READ_UNCOMMITTED = 1;
+            TRANSACTION_READ_COMMITTED   = 2;
+            TRANSACTION_REPEATABLE_READ  = 4;
+            TRANSACTION_SERIALIZABLE     = 8;
+            -->
+            <property name="hibernate.connection.isolation" value="2"/>
             
+            
+            <property name="hibernate.generate_statistics" value="true"/>
+            
+            <property name="hibernate.jdbc.time_zone" value="UTC"/>
             <property name="hibernate.jdbc.fetch_size" value="50"/>
             <property name="hibernate.jdbc.batch_size" value="10"/>
             <property name="hibernate.order_inserts" value="true"/>
@@ -45,6 +55,9 @@
             <property name="hibernate.jdbc.batch_versioned_data" value="true"/>
             
             <!-- Connection Pool setup -->
+            <property name="connection.provider_class" value="org.hibernate.c3p0.internal.C3P0ConnectionProvider"/>
+            
+            <property name="hibernate.c3p0.dataSourceName" value="DefaultTestDataSource"/>
             <property name="hibernate.c3p0.min_size" value="10"/>
             <property name="hibernate.c3p0.max_size" value="20"/>
             <property name="hibernate.c3p0.acquire_increment" value="1"/>

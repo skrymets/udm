@@ -18,6 +18,7 @@
         <version.query-dsl>4.1.3</version.query-dsl>
         
         <sources.query.dsl>${project.build.directory}/generated-sources/apt</sources.query.dsl>
+        <version.slf4j>1.7.25</version.slf4j>
     </properties>
     
     <dependencies>
@@ -39,8 +40,15 @@
         
         <dependency>
             <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${version.slf4j}</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.25</version>
+            <version>${version.slf4j}</version>
             <scope>test</scope>
         </dependency>
 
@@ -67,6 +75,13 @@
         
         <dependency>
             <groupId>com.querydsl</groupId>
+            <artifactId>querydsl-core</artifactId>
+            <version>${version.query-dsl}</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.querydsl</groupId>
             <artifactId>querydsl-jpa</artifactId>
             <version>${version.query-dsl}</version>
             <scope>test</scope>
@@ -86,16 +101,18 @@
             <scope>test</scope>
         </dependency>
 
-        <!--
         <dependency>
-            <groupId>org.dbunit</groupId>
-            <artifactId>dbunit</artifactId>
-            <version>2.5.4</version>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>3.6.2</version>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-classic</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
-        -->
-        
-                
     </dependencies>
     
     <build>
@@ -119,6 +136,9 @@
                             <includes>
                                 <include>udm.**</include>
                             </includes>
+                            <options>
+                                <querydsl.packageSuffix>.dsl</querydsl.packageSuffix>
+                            </options>
                         </configuration>
                     </execution>
                 </executions>

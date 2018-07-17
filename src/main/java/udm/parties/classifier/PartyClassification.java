@@ -17,8 +17,10 @@ package udm.parties.classifier;
 
 import java.util.Objects;
 import javax.persistence.Entity;
+import static javax.persistence.FetchType.LAZY;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import udm.BusinessEntity;
 import udm.parties.Party;
@@ -34,11 +36,13 @@ public abstract class PartyClassification extends BusinessEntity {
 
     private static final long serialVersionUID = 1447936822300888937L;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = LAZY)
+    @JoinColumn
     private Party party;
 
-    @ManyToOne(optional = false)
-    private PartyClassificationType partyType;
+    @ManyToOne(optional = false, fetch = LAZY)
+    @JoinColumn
+    private PartyClassificationType classificationType;
 
     public PartyClassification() {
     }
@@ -51,19 +55,19 @@ public abstract class PartyClassification extends BusinessEntity {
         this.party = party;
     }
 
-    public PartyClassificationType getPartyType() {
-        return partyType;
+    public PartyClassificationType getClassificationType() {
+        return classificationType;
     }
 
-    public void setPartyType(PartyClassificationType partyType) {
-        this.partyType = partyType;
+    public void setClassificationType(PartyClassificationType classificationType) {
+        this.classificationType = classificationType;
     }
 
     @Override
     public int hashCode() {
         int hash = 3;
         hash = 29 * hash + Objects.hashCode(this.party);
-        hash = 29 * hash + Objects.hashCode(this.partyType);
+        hash = 29 * hash + Objects.hashCode(this.classificationType);
         return hash;
     }
 
@@ -82,7 +86,7 @@ public abstract class PartyClassification extends BusinessEntity {
         if (!Objects.equals(this.party, other.party)) {
             return false;
         }
-        if (!Objects.equals(this.partyType, other.partyType)) {
+        if (!Objects.equals(this.classificationType, other.classificationType)) {
             return false;
         }
         return true;

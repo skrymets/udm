@@ -35,6 +35,9 @@ public class PartyRelationship extends BusinessEntity {
     @ManyToOne(optional = false)
     private PartyRole to;
 
+    @ManyToOne(optional = false)
+    private PartyRelationshipType relationshipType;
+
     public PartyRelationship() {
     }
 
@@ -52,6 +55,14 @@ public class PartyRelationship extends BusinessEntity {
 
     public void setTo(PartyRole to) {
         this.to = to;
+    }
+
+    public PartyRelationshipType getRelationshipType() {
+        return relationshipType;
+    }
+
+    public void setRelationshipType(PartyRelationshipType relationshipType) {
+        this.relationshipType = relationshipType;
     }
 
 }

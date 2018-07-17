@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.parties.classifier;
+package udm.parties.relationships;
 
 import java.util.ArrayList;
 import java.util.List;
-import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import udm.Classifier;
 
@@ -27,26 +27,26 @@ import udm.Classifier;
  * @author skrymets
  */
 @Entity
-public class PartyClassificationType extends Classifier {
+public class PartyRelationshipType extends Classifier {
 
-    private static final long serialVersionUID = -1735451119505129396L;
+    private static final long serialVersionUID = -1451526790422664271L;
 
     @OneToMany(
-            mappedBy = "classificationType",
-            cascade = ALL, orphanRemoval = true
+            mappedBy = "relationshipType",
+            fetch = FetchType.LAZY, orphanRemoval = true
     )
-    private List<PartyClassification> partyClassifications = new ArrayList<>();
+    private List<PartyRelationship> relationships = new ArrayList<>();
 
-    public PartyClassificationType() {
+    public PartyRelationshipType() {
     }
 
-    public boolean addPartyClassification(PartyClassification pc) {
-        pc.setClassificationType(this);
-        return partyClassifications.add(pc);
+    public boolean addPartyRelationship(PartyRelationship pr) {
+        pr.setRelationshipType(this);
+        return relationships.add(pr);
     }
 
-    public boolean removePartyClassification(PartyClassification pc) {
-        return partyClassifications.remove(pc);
+    public boolean removePartyRelationship(PartyRelationship pr) {
+        return relationships.remove(pr);
     }
 
 }
