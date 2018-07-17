@@ -16,7 +16,7 @@
 package udm.domain.rlshp;
 
 import javax.persistence.Entity;
-import udm.parties.relationships.PartyRelationship;
+import udm.parties.PartyRelationship;
 
 /**
  *

@@ -16,7 +16,7 @@
 package udm.domain.roles;
 
 import javax.persistence.Entity;
-import udm.parties.roles.PersonRole;
+import udm.roles.PersonRole;
 
 /**
  *

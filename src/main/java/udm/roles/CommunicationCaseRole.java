@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.parties.roles;
+package udm.roles;
 
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
@@ -21,7 +21,8 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import udm.BusinessEntity;
-import udm.classifiers.roles.PartyRoleType;
+import udm.classifiers.roles.CommunicationCaseRoleType;
+import udm.communication.CommunicationCase;
 import udm.parties.Party;
 
 /**
@@ -30,7 +31,7 @@ import udm.parties.Party;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class PartyRole extends BusinessEntity {
+public class CommunicationCaseRole extends BusinessEntity {
 
     private static final long serialVersionUID = 5704600205187968577L;
 
@@ -40,17 +41,13 @@ public abstract class PartyRole extends BusinessEntity {
 
     @ManyToOne(optional = false)
     @JoinColumn
-    private PartyRoleType roleType;
+    private CommunicationCase communicationCase;
 
-//    @ManyToMany()
-//    private List<PartyRelationship> partyRelationships;
+    @ManyToOne(optional = false)
+    @JoinColumn
+    private CommunicationCaseRoleType communicationCaseRoleType;
 
-    public PartyRole() {
-    }
-
-    public PartyRole(Party party, PartyRoleType roleType) {
-        this.party = party;
-        this.roleType = roleType;
+    public CommunicationCaseRole() {
     }
 
     public Party getParty() {
@@ -61,12 +58,20 @@ public abstract class PartyRole extends BusinessEntity {
         this.party = party;
     }
 
-    public PartyRoleType getRoleType() {
-        return roleType;
+    public CommunicationCase getCommunicationCase() {
+        return communicationCase;
     }
 
-    public void setRoleType(PartyRoleType roleType) {
-        this.roleType = roleType;
+    public void setCommunicationCase(CommunicationCase cc) {
+        this.communicationCase = cc;
+    }
+
+    public CommunicationCaseRoleType getCommunicationCaseRoleType() {
+        return communicationCaseRoleType;
+    }
+
+    public void setCommunicationCaseRoleType(CommunicationCaseRoleType ccrt) {
+        this.communicationCaseRoleType = ccrt;
     }
 
 }

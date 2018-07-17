@@ -20,7 +20,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-import udm.facilities.FacilityRole;
+import udm.roles.FacilityRole;
 
 /**
  *

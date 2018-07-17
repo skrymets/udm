@@ -16,7 +16,7 @@
 package udm.domain.roles.org;
 
 import javax.persistence.Entity;
-import udm.parties.roles.OrganizationRole;
+import udm.roles.OrganizationRole;
 
 /**
  *

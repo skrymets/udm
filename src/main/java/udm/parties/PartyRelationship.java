@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.parties.relationships;
+package udm.parties;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,7 @@ import javax.persistence.OneToMany;
 import udm.BusinessEntity;
 import udm.classifiers.PartyRelationshipType;
 import udm.communication.CommunicationEvent;
-import udm.parties.roles.PartyRole;
+import udm.roles.PartyRole;
 
 /**
  *

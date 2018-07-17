@@ -20,33 +20,33 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-import udm.roles.CommunicationEventRole;
+import udm.roles.CommunicationCaseRole;
 
 /**
  *
  * @author skrymets
  */
 @Entity
-public class CommunicationEventRoleType extends AbstractRoleType {
+public class CommunicationCaseRoleType extends AbstractRoleType {
 
-    private static final long serialVersionUID = -5415684740514785615L;
+    private static final long serialVersionUID = 5254659432600049771L;
 
     @OneToMany(
-            mappedBy = "eventRoleType",
+            mappedBy = "communicationCaseRoleType",
             fetch = FetchType.LAZY, orphanRemoval = true
     )
-    private List<CommunicationEventRole> communicationEventRoles = new ArrayList<>();
+    private List<CommunicationCaseRole> communicationCaseRoles = new ArrayList<>();
 
-    public CommunicationEventRoleType() {
+    public CommunicationCaseRoleType() {
     }
 
-    public void addCommunicationEventRole(CommunicationEventRole cer) {
-        cer.setEventRoleType(this);
-        communicationEventRoles.add(cer);
+    public boolean addCaseRole(CommunicationCaseRole cr) {
+        cr.setCommunicationCaseRoleType(this);
+        return communicationCaseRoles.add(cr);
     }
 
-    public boolean remove(CommunicationEventRole cer) {
-        return communicationEventRoles.remove(cer);
+    public boolean removeCaseRole(CommunicationCaseRole cr) {
+        return communicationCaseRoles.remove(cr);
     }
 
 }

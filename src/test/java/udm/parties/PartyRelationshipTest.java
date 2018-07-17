@@ -31,8 +31,7 @@ import udm.dao.PersonDAO;
 import udm.domain.rlshp.TeachingInstructorRelationship;
 import udm.domain.roles.InstructorRole;
 import udm.domain.roles.StudentRole;
-import udm.parties.relationships.PartyRelationship;
-import udm.parties.relationships.dsl.QPartyRelationship;
+import udm.parties.dsl.QPartyRelationship;
 
 /**
  *

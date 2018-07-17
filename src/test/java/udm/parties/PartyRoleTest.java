@@ -26,8 +26,8 @@ import udm.dao.PartyRoleDAO;
 import udm.dao.PartyRoleTypeDAO;
 import udm.dao.PersonDAO;
 import udm.domain.roles.StudentRole;
-import udm.parties.roles.PartyRole;
-import udm.parties.roles.dsl.QPartyRole;
+import udm.roles.PartyRole;
+import udm.roles.dsl.QPartyRole;
 
 /**
  *

@@ -25,7 +25,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import udm.PersistentEntity;
-import udm.parties.relationships.PartyRelationship;
+import udm.parties.PartyRelationship;
+import udm.roles.CommunicationEventRole;
 
 /**
  *

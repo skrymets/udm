@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.facilities;
+package udm.roles;
 
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import udm.BusinessEntity;
-import udm.classifiers.roles.FacilityRoleType;
-import udm.parties.Party;
+import udm.PersistentEntity;
+import udm.classifiers.roles.CommunicationEventRoleType;
+import udm.communication.CommunicationEvent;
 
 /**
  *
@@ -30,47 +30,35 @@ import udm.parties.Party;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class FacilityRole extends BusinessEntity {
+public class CommunicationEventRole extends PersistentEntity {
 
     private static final long serialVersionUID = 5704600205187968577L;
 
     @ManyToOne(optional = false)
     @JoinColumn
-    private Party party;
+    private CommunicationEvent communicationEvent;
 
     @ManyToOne(optional = false)
     @JoinColumn
-    private Facility facility;
+    private CommunicationEventRoleType eventRoleType;
 
-    @ManyToOne(optional = false)
-    @JoinColumn
-    private FacilityRoleType facilityRoleType;
-
-    public FacilityRole() {
+    public CommunicationEventRole() {
     }
 
-    public Party getParty() {
-        return party;
+    public CommunicationEventRoleType getEventRoleType() {
+        return eventRoleType;
     }
 
-    public void setParty(Party party) {
-        this.party = party;
+    public void setEventRoleType(CommunicationEventRoleType eventRoleType) {
+        this.eventRoleType = eventRoleType;
     }
 
-    public Facility getFacility() {
-        return facility;
+    public CommunicationEvent getCommunicationEvent() {
+        return communicationEvent;
     }
 
-    public void setFacility(Facility facility) {
-        this.facility = facility;
-    }
-
-    public FacilityRoleType getFacilityRoleType() {
-        return facilityRoleType;
-    }
-
-    public void setFacilityRoleType(FacilityRoleType facilityRoleType) {
-        this.facilityRoleType = facilityRoleType;
+    public void setCommunicationEvent(CommunicationEvent communicationEvent) {
+        this.communicationEvent = communicationEvent;
     }
 
 }
