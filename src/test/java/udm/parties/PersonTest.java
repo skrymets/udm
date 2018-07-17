@@ -112,25 +112,6 @@ public class PersonTest extends AbstractTest {
         assertNotNull(hqlReturnedPerson);
         assertEquals(classification.getParty(), hqlReturnedPerson);
 
-        //dumpDB();
+        dumpDB();
     }
-
-    public void dumpDB() {
-        try {
-            org.hibernate.Session session = getEntityManager().unwrap(org.hibernate.Session.class);
-            org.hibernate.engine.spi.SessionFactoryImplementor sfImpl = (org.hibernate.engine.spi.SessionFactoryImplementor) session.getSessionFactory();
-            java.sql.Connection jdbcConnection = sfImpl
-                    .getJdbcServices()
-                    .getBootstrapJdbcConnectionAccess()
-                    .obtainConnection();
-
-            try (java.sql.Statement jdbcStatement = jdbcConnection.createStatement()) {
-                java.sql.ResultSet rs = jdbcStatement.executeQuery("SCRIPT TO './DUMP.sql';");
-            }
-
-        } catch (java.sql.SQLException e) {
-            LOG.error(e.getMessage());
-        }
-    }
-
 }
