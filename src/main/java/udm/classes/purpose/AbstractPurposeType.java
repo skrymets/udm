@@ -13,18 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.domain;
+package udm.classes.purpose;
 
-import javax.persistence.Entity;
-import udm.parties.PersonClassification;
+import javax.persistence.MappedSuperclass;
+import udm.classes.Classifier;
 
 /**
  *
  * @author skrymets
  */
-@Entity
-public class IncomeClassification extends PersonClassification {
+@MappedSuperclass
+public abstract class AbstractPurposeType extends Classifier {
 
-    private static final long serialVersionUID = 5215867488222455218L;
+    private static final long serialVersionUID = 3214876396765613488L;
+
+    public AbstractPurposeType() {
+    }
 
 }

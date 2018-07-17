@@ -13,14 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.parties.relationships;
+package udm.communication;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import udm.PersistentEntity;
+import udm.parties.relationships.PartyRelationship;
 
 /**
  *
@@ -36,6 +41,12 @@ public class CommunicationEvent extends PersistentEntity {
 
     @Column(nullable = true)
     private LocalDateTime ended;
+
+    @OneToMany(
+            mappedBy = "communicationEvent",
+            fetch = FetchType.LAZY, orphanRemoval = true
+    )
+    private List<CommunicationEventRole> communicationEventRoles = new ArrayList<>();
 
     @ManyToOne(optional = false)
     @JoinColumn
@@ -66,6 +77,15 @@ public class CommunicationEvent extends PersistentEntity {
 
     public void setPartyRelationship(PartyRelationship partyRelationship) {
         this.partyRelationship = partyRelationship;
+    }
+
+    public boolean addCommunicationEventRole(CommunicationEventRole cer) {
+        cer.setCommunicationEvent(this);
+        return communicationEventRoles.add(cer);
+    }
+
+    public boolean removeCommunicationEventRole(CommunicationEventRole cer) {
+        return communicationEventRoles.remove(cer);
     }
 
 }

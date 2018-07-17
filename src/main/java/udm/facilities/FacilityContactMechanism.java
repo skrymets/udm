@@ -20,7 +20,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import udm.BusinessEntity;
 import udm.contacts.ContactMechanism;
-import udm.facilities.Facility;
 
 /**
  *

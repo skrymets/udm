@@ -13,40 +13,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.parties.classifier;
+package udm.classes;
 
 import java.util.ArrayList;
 import java.util.List;
-import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-import udm.Classifier;
+import udm.facilities.Facility;
 
 /**
  *
  * @author skrymets
  */
 @Entity
-public class PartyClassificationType extends Classifier {
+public class FacilityType extends Classifier {
 
-    private static final long serialVersionUID = -1735451119505129396L;
+    private static final long serialVersionUID = -5603488086413409198L;
 
     @OneToMany(
-            mappedBy = "classificationType",
-            cascade = ALL, orphanRemoval = true
+            mappedBy = "facilityType",
+            fetch = FetchType.LAZY, orphanRemoval = true
     )
-    private List<PartyClassification> partyClassifications = new ArrayList<>();
+    private List<Facility> facilities = new ArrayList<>();
 
-    public PartyClassificationType() {
+    public FacilityType() {
     }
 
-    public boolean addPartyClassification(PartyClassification pc) {
-        pc.setClassificationType(this);
-        return partyClassifications.add(pc);
+    public boolean addFacility(Facility facility) {
+        facility.setFacilityType(this);
+        return facilities.add(facility);
     }
 
-    public boolean removePartyClassification(PartyClassification pc) {
-        return partyClassifications.remove(pc);
+    public boolean removeFacility(Facility facility) {
+        return facilities.remove(facility);
     }
 
 }

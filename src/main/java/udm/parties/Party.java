@@ -24,7 +24,6 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import udm.MutablePersistentEntity;
 import udm.contacts.PartyContactMechanism;
-import udm.parties.classifier.PartyClassification;
 import udm.parties.roles.PartyRole;
 
 /**

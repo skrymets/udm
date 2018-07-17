@@ -22,14 +22,13 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import udm.AbstractTest;
+import udm.classes.PartyClassificationType;
 import udm.dao.CDI.PersistenceContext;
 import udm.dao.PartyClassificationDAO;
 import udm.dao.PartyClassificationTypeDAO;
 import udm.dao.PersonDAO;
 import udm.domain.IncomeClassification;
-import udm.parties.classifier.PartyClassification;
-import udm.parties.classifier.PartyClassificationType;
-import udm.parties.classifier.dsl.QPartyClassification;
+import udm.parties.dsl.QPartyClassification;
 import udm.parties.dsl.QPerson;
 
 /**

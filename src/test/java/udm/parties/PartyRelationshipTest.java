@@ -21,6 +21,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import udm.AbstractTest;
+import udm.classes.PartyRelationshipType;
+import udm.classes.roles.PartyRoleType;
 import udm.dao.PartyRelationshipDAO;
 import udm.dao.PartyRelationshipTypeDAO;
 import udm.dao.PartyRoleDAO;
@@ -30,9 +32,7 @@ import udm.domain.rlshp.TeachingInstructorRelationship;
 import udm.domain.roles.InstructorRole;
 import udm.domain.roles.StudentRole;
 import udm.parties.relationships.PartyRelationship;
-import udm.parties.relationships.PartyRelationshipType;
 import udm.parties.relationships.dsl.QPartyRelationship;
-import udm.parties.roles.PartyRoleType;
 
 /**
  *

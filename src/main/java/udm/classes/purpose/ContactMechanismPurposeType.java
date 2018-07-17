@@ -13,19 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.geo;
+package udm.classes.purpose;
 
-import udm.Classifier;
+import javax.persistence.Entity;
 
 /**
  *
  * @author skrymets
  */
-public class GeorgraphicBoundaryType extends Classifier {
+@Entity
+public class ContactMechanismPurposeType extends AbstractPurposeType {
 
-    private static final long serialVersionUID = -4744478971441861102L;
+    private static final long serialVersionUID = 5721491454702914524L;
 
-    public GeorgraphicBoundaryType() {
+    public ContactMechanismPurposeType() {
     }
 
 }

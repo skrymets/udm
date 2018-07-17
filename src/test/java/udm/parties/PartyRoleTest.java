@@ -21,12 +21,12 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import udm.AbstractTest;
+import udm.classes.roles.PartyRoleType;
 import udm.dao.PartyRoleDAO;
 import udm.dao.PartyRoleTypeDAO;
 import udm.dao.PersonDAO;
 import udm.domain.roles.StudentRole;
 import udm.parties.roles.PartyRole;
-import udm.parties.roles.PartyRoleType;
 import udm.parties.roles.dsl.QPartyRole;
 
 /**

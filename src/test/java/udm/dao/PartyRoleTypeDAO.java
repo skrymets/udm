@@ -15,7 +15,7 @@
  */
 package udm.dao;
 
-import udm.parties.roles.PartyRoleType;
+import udm.classes.roles.PartyRoleType;
 
 public class PartyRoleTypeDAO extends AbstractDAO<PartyRoleType> {
 

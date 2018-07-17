@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.parties.classifier;
+package udm.parties;
 
 import java.util.Objects;
 import javax.persistence.Entity;
@@ -23,7 +23,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import udm.BusinessEntity;
-import udm.parties.Party;
+import udm.classes.PartyClassificationType;
 
 /**
  *

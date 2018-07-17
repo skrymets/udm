@@ -15,7 +15,7 @@
  */
 package udm.dao;
 
-import udm.parties.relationships.PartyRelationshipType;
+import udm.classes.PartyRelationshipType;
 
 public class PartyRelationshipTypeDAO extends AbstractDAO<PartyRelationshipType> {
 

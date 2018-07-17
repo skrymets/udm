@@ -19,6 +19,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import udm.BusinessEntity;
+import udm.classes.purpose.ContactMechanismPurposeType;
 
 /**
  *

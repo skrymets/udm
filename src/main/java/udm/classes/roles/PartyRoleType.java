@@ -13,40 +13,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.facilities;
+package udm.classes.roles;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-import udm.Classifier;
+import udm.parties.roles.PartyRole;
 
 /**
  *
  * @author skrymets
  */
 @Entity
-public class FacilityType extends Classifier {
+public class PartyRoleType extends AbstractRoleType {
 
-    private static final long serialVersionUID = -5603488086413409198L;
+    private static final long serialVersionUID = 5704600205187968577L;
 
     @OneToMany(
-            mappedBy = "facilityType",
+            mappedBy = "roleType",
             fetch = FetchType.LAZY, orphanRemoval = true
     )
-    private List<Facility> facilities = new ArrayList<>();
+    private List<PartyRole> partyRoles = new ArrayList<>();
 
-    public FacilityType() {
+    public PartyRoleType() {
     }
 
-    public boolean addFacility(Facility facility) {
-        facility.setFacilityType(this);
-        return facilities.add(facility);
+    public boolean addPartyRole(PartyRole pr) {
+        pr.setRoleType(this);
+        return partyRoles.add(pr);
     }
 
-    public boolean removeFacility(Facility facility) {
-        return facilities.remove(facility);
+    public boolean removePartyRole(PartyRole pr) {
+        return partyRoles.remove(pr);
     }
+    
+    
 
 }

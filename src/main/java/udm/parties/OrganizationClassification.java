@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.parties.classifier;
+package udm.parties;
 
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
