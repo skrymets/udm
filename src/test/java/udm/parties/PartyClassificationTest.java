@@ -29,7 +29,8 @@ import udm.dao.PersonDAO;
 import udm.domain.IncomeClassification;
 import udm.parties.classifier.PartyClassification;
 import udm.parties.classifier.PartyClassificationType;
-import udm.parties.classifier.QPartyClassification;
+import udm.parties.classifier.dsl.QPartyClassification;
+import udm.parties.dsl.QPerson;
 
 /**
  *
