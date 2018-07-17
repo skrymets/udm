@@ -15,7 +15,11 @@
  */
 package udm.parties.relationships;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import udm.Classifier;
 
 /**
@@ -27,7 +31,22 @@ public class PartyRelationshipType extends Classifier {
 
     private static final long serialVersionUID = -1451526790422664271L;
 
+    @OneToMany(
+            mappedBy = "relationshipType",
+            fetch = FetchType.LAZY, orphanRemoval = true
+    )
+    private List<PartyRelationship> relationships = new ArrayList<>();
+
     public PartyRelationshipType() {
+    }
+
+    public boolean addPartyRelationship(PartyRelationship pr) {
+        pr.setRelationshipType(this);
+        return relationships.add(pr);
+    }
+
+    public boolean removePartyRelationship(PartyRelationship pr) {
+        return relationships.remove(pr);
     }
 
 }
