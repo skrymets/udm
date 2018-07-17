@@ -18,6 +18,7 @@ package udm;
 import com.querydsl.core.annotations.QueryDelegate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import java.time.LocalDateTime;
+import udm.dsl.QBusinessEntity;
 
 /**
  *

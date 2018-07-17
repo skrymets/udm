@@ -27,6 +27,8 @@ import udm.dao.PersonDAO;
 import udm.domain.IncomeClassification;
 import udm.parties.classifier.PartyClassification;
 import udm.parties.classifier.PartyClassificationType;
+import udm.parties.dsl.QParty;
+import udm.parties.dsl.QPerson;
 
 /**
  *
@@ -89,7 +91,7 @@ public class PersonTest extends AbstractTest {
 
         PartyClassification classification = new IncomeClassification();
         classification.setParty(person);
-        classification.setPartyType(partyType);
+        classification.setClassificationType(partyType);
         classification.validFromNow();
 
         classificationDAO.create(classification);

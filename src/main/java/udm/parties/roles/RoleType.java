@@ -15,39 +15,19 @@
  */
 package udm.parties.roles;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import udm.Classifier;
 
 /**
  *
  * @author skrymets
  */
 @Entity
-public class PartyRoleType extends RoleType {
+public abstract class RoleType extends Classifier {
 
-    private static final long serialVersionUID = 5704600205187968577L;
+    private static final long serialVersionUID = -1451526790422664271L;
 
-    @OneToMany(
-            mappedBy = "roleType",
-            fetch = FetchType.LAZY, orphanRemoval = true
-    )
-    private List<PartyRole> partyRoles = new ArrayList<>();
-
-    public PartyRoleType() {
+    public RoleType() {
     }
-
-    public boolean addPartyRole(PartyRole pr) {
-        pr.setRoleType(this);
-        return partyRoles.add(pr);
-    }
-
-    public boolean removePartyRole(PartyRole pr) {
-        return partyRoles.remove(pr);
-    }
-    
-    
 
 }
