@@ -18,6 +18,7 @@ package udm.parties.roles;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import udm.BusinessEntity;
 import udm.parties.Party;
@@ -33,10 +34,15 @@ public abstract class PartyRole extends BusinessEntity {
     private static final long serialVersionUID = 5704600205187968577L;
 
     @ManyToOne(optional = false)
+    @JoinColumn
     private Party party;
 
     @ManyToOne(optional = false)
+    @JoinColumn
     private PartyRoleType roleType;
+
+//    @ManyToMany()
+//    private List<PartyRelationship> partyRelationships;
 
     public PartyRole() {
     }

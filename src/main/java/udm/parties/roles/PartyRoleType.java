@@ -15,7 +15,11 @@
  */
 package udm.parties.roles;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -26,7 +30,24 @@ public class PartyRoleType extends RoleType {
 
     private static final long serialVersionUID = 5704600205187968577L;
 
+    @OneToMany(
+            mappedBy = "roleType",
+            fetch = FetchType.LAZY, orphanRemoval = true
+    )
+    private List<PartyRole> partyRoles = new ArrayList<>();
+
     public PartyRoleType() {
     }
+
+    public boolean addPartyRole(PartyRole pr) {
+        pr.setRoleType(this);
+        return partyRoles.add(pr);
+    }
+
+    public boolean removePartyRole(PartyRole pr) {
+        return partyRoles.remove(pr);
+    }
+    
+    
 
 }
