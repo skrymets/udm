@@ -23,7 +23,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import udm.BusinessEntity;
-import udm.classes.PartyRelationshipType;
+import udm.classifiers.PartyRelationshipType;
 import udm.communication.CommunicationEvent;
 import udm.parties.roles.PartyRole;
 

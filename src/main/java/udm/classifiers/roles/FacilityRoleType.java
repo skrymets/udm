@@ -13,40 +13,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.classes.purpose;
+package udm.classifiers.roles;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-import udm.communication.CommunicationEventPurpose;
+import udm.facilities.FacilityRole;
 
 /**
  *
  * @author skrymets
  */
-public class CommunicationEventPurposeType extends AbstractPurposeType {
+@Entity
+public class FacilityRoleType extends AbstractRoleType {
 
-    private static final long serialVersionUID = -7259560991245811987L;
+    private static final long serialVersionUID = 5704600205187968577L;
 
     @OneToMany(
-            mappedBy = "eventPurposeType",
-            fetch = FetchType.LAZY, orphanRemoval = true,
-            cascade = CascadeType.ALL
+            mappedBy = "facilityRoleType",
+            fetch = FetchType.LAZY, orphanRemoval = true
     )
-    private List<CommunicationEventPurpose> eventPurposes = new ArrayList<>();
+    private List<FacilityRole> facilityRoles = new ArrayList<>();
 
-    public CommunicationEventPurposeType() {
+    public FacilityRoleType() {
     }
 
-    public boolean addCommunicationEventPurpose(CommunicationEventPurpose cep) {
-        cep.setEventPurposeType(this);
-        return eventPurposes.add(cep);
+    public boolean addFacilityRole(FacilityRole fr) {
+        fr.setFacilityRoleType(this);
+        return facilityRoles.add(fr);
     }
 
-    public boolean removeCommunicationEventPurpose(CommunicationEventPurpose cep) {
-        return eventPurposes.remove(cep);
+    public boolean removeFacilityRole(FacilityRole fr) {
+        return facilityRoles.remove(fr);
     }
 
 }

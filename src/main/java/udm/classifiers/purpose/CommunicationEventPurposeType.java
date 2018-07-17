@@ -13,42 +13,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.classes.roles;
+package udm.classifiers.purpose;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Entity;
+import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-import udm.parties.roles.PartyRole;
+import udm.communication.CommunicationEventPurpose;
 
 /**
  *
  * @author skrymets
  */
-@Entity
-public class PartyRoleType extends AbstractRoleType {
+public class CommunicationEventPurposeType extends AbstractPurposeType {
 
-    private static final long serialVersionUID = 5704600205187968577L;
+    private static final long serialVersionUID = -7259560991245811987L;
 
     @OneToMany(
-            mappedBy = "roleType",
-            fetch = FetchType.LAZY, orphanRemoval = true
+            mappedBy = "eventPurposeType",
+            fetch = FetchType.LAZY, orphanRemoval = true,
+            cascade = CascadeType.ALL
     )
-    private List<PartyRole> partyRoles = new ArrayList<>();
+    private List<CommunicationEventPurpose> eventPurposes = new ArrayList<>();
 
-    public PartyRoleType() {
+    public CommunicationEventPurposeType() {
     }
 
-    public boolean addPartyRole(PartyRole pr) {
-        pr.setRoleType(this);
-        return partyRoles.add(pr);
+    public boolean addCommunicationEventPurpose(CommunicationEventPurpose cep) {
+        cep.setEventPurposeType(this);
+        return eventPurposes.add(cep);
     }
 
-    public boolean removePartyRole(PartyRole pr) {
-        return partyRoles.remove(pr);
+    public boolean removeCommunicationEventPurpose(CommunicationEventPurpose cep) {
+        return eventPurposes.remove(cep);
     }
-    
-    
 
 }

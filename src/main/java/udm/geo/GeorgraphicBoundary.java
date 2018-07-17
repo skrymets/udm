@@ -18,7 +18,7 @@ package udm.geo;
 import javax.persistence.Column;
 import javax.persistence.ManyToOne;
 import udm.PersistentEntity;
-import udm.classes.GeorgraphicBoundaryType;
+import udm.classifiers.GeorgraphicBoundaryType;
 
 /**
  *

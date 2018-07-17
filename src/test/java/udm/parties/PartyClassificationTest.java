@@ -22,7 +22,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import udm.AbstractTest;
-import udm.classes.PartyClassificationType;
+import udm.classifiers.PartyClassificationType;
 import udm.dao.CDI.PersistenceContext;
 import udm.dao.PartyClassificationDAO;
 import udm.dao.PartyClassificationTypeDAO;

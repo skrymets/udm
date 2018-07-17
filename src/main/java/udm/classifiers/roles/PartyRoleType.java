@@ -13,40 +13,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.classes;
+package udm.classifiers.roles;
 
 import java.util.ArrayList;
 import java.util.List;
-import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-import udm.parties.PartyClassification;
+import udm.parties.roles.PartyRole;
 
 /**
  *
  * @author skrymets
  */
 @Entity
-public class PartyClassificationType extends Classifier {
+public class PartyRoleType extends AbstractRoleType {
 
-    private static final long serialVersionUID = -1735451119505129396L;
+    private static final long serialVersionUID = 5704600205187968577L;
 
     @OneToMany(
-            mappedBy = "classificationType",
-            cascade = ALL, orphanRemoval = true
+            mappedBy = "roleType",
+            fetch = FetchType.LAZY, orphanRemoval = true
     )
-    private List<PartyClassification> partyClassifications = new ArrayList<>();
+    private List<PartyRole> partyRoles = new ArrayList<>();
 
-    public PartyClassificationType() {
+    public PartyRoleType() {
     }
 
-    public boolean addPartyClassification(PartyClassification pc) {
-        pc.setClassificationType(this);
-        return partyClassifications.add(pc);
+    public boolean addPartyRole(PartyRole pr) {
+        pr.setRoleType(this);
+        return partyRoles.add(pr);
     }
 
-    public boolean removePartyClassification(PartyClassification pc) {
-        return partyClassifications.remove(pc);
+    public boolean removePartyRole(PartyRole pr) {
+        return partyRoles.remove(pr);
     }
+    
+    
 
 }

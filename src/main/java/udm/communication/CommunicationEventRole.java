@@ -21,7 +21,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import udm.PersistentEntity;
-import udm.classes.roles.CommunicationEventRoleType;
+import udm.classifiers.roles.CommunicationEventRoleType;
 
 /**
  *

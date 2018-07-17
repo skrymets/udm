@@ -18,7 +18,7 @@ package udm.communication;
 import javax.persistence.Column;
 import javax.persistence.ManyToOne;
 import udm.PersistentEntity;
-import udm.classes.purpose.CommunicationEventPurposeType;
+import udm.classifiers.purpose.CommunicationEventPurposeType;
 
 /**
  *

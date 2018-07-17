@@ -21,7 +21,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import udm.BusinessEntity;
-import udm.classes.roles.FacilityRoleType;
+import udm.classifiers.roles.FacilityRoleType;
 import udm.parties.Party;
 
 /**

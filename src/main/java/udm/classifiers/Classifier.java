@@ -13,39 +13,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.contacts;
+package udm.classifiers;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import static javax.persistence.InheritanceType.SINGLE_TABLE;
 import udm.PersistentEntity;
-import udm.classifiers.ContactMechanismType;
 
 /**
  *
  * @author skrymets
  */
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class ContactMechanism extends PersistentEntity {
+@Inheritance(strategy = SINGLE_TABLE)
+public abstract class Classifier extends PersistentEntity {
 
-    private static final long serialVersionUID = -1001047402929393911L;
+    private static final long serialVersionUID = 8274173393698223675L;
 
-    @ManyToOne(optional = false)
-    @JoinColumn
-    private ContactMechanismType mechanismType;
+    @Column(nullable = false)
+    protected String description;
 
-    public ContactMechanism() {
+    public Classifier() {
     }
 
-    public ContactMechanismType getMechanismType() {
-        return mechanismType;
+    public String getDescription() {
+        return description;
     }
 
-    public void setMechanismType(ContactMechanismType mechanismType) {
-        this.mechanismType = mechanismType;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
 }

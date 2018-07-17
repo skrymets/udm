@@ -13,20 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.classes.purpose;
+package udm.classifiers.roles;
 
-import javax.persistence.Entity;
+import javax.persistence.MappedSuperclass;
+import udm.classifiers.Classifier;
 
 /**
  *
  * @author skrymets
  */
-@Entity
-public class ContactMechanismPurposeType extends AbstractPurposeType {
+@MappedSuperclass
+public abstract class AbstractRoleType extends Classifier {
 
-    private static final long serialVersionUID = 5721491454702914524L;
+    private static final long serialVersionUID = -1451526790422664271L;
 
-    public ContactMechanismPurposeType() {
+    public AbstractRoleType() {
     }
 
 }

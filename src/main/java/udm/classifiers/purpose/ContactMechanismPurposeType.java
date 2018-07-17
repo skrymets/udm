@@ -13,36 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.classes;
+package udm.classifiers.purpose;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import static javax.persistence.InheritanceType.SINGLE_TABLE;
-import udm.PersistentEntity;
 
 /**
  *
  * @author skrymets
  */
 @Entity
-@Inheritance(strategy = SINGLE_TABLE)
-public abstract class Classifier extends PersistentEntity {
+public class ContactMechanismPurposeType extends AbstractPurposeType {
 
-    private static final long serialVersionUID = 8274173393698223675L;
+    private static final long serialVersionUID = 5721491454702914524L;
 
-    @Column(nullable = false)
-    protected String description;
-
-    public Classifier() {
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public ContactMechanismPurposeType() {
     }
 
 }

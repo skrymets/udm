@@ -24,7 +24,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import udm.PersistentEntity;
-import udm.classes.FacilityType;
+import udm.classifiers.FacilityType;
 
 /**
  *

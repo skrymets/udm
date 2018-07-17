@@ -23,7 +23,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import udm.BusinessEntity;
-import udm.classes.PartyClassificationType;
+import udm.classifiers.PartyClassificationType;
 
 /**
  *
