@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.domain.contacts;
+package udm.contacts;
 
 import javax.persistence.Entity;
 import udm.Classifier;
@@ -23,11 +23,11 @@ import udm.Classifier;
  * @author skrymets
  */
 @Entity
-public class ContactMechanismType extends Classifier {
+public class ContactMechanismPurposeType extends Classifier {
 
     private static final long serialVersionUID = 5721491454702914524L;
 
-    public ContactMechanismType() {
+    public ContactMechanismPurposeType() {
     }
 
 }
