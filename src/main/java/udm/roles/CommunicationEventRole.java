@@ -20,7 +20,6 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import udm.PersistentEntity;
 import udm.classifiers.roles.CommunicationEventRoleType;
 import udm.communication.CommunicationEvent;
 
@@ -30,7 +29,7 @@ import udm.communication.CommunicationEvent;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class CommunicationEventRole extends PersistentEntity {
+public class CommunicationEventRole extends AbstractRole {
 
     private static final long serialVersionUID = 5704600205187968577L;
 

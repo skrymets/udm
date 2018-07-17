@@ -20,7 +20,6 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import udm.BusinessEntity;
 import udm.classifiers.roles.CommunicationCaseRoleType;
 import udm.communication.CommunicationCase;
 import udm.parties.Party;
@@ -31,7 +30,7 @@ import udm.parties.Party;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class CommunicationCaseRole extends BusinessEntity {
+public class CommunicationCaseRole extends AbstractRole {
 
     private static final long serialVersionUID = 5704600205187968577L;
 
