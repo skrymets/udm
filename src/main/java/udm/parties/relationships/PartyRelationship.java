@@ -15,8 +15,13 @@
  */
 package udm.parties.relationships;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import udm.BusinessEntity;
 import udm.parties.roles.PartyRole;
 
@@ -37,6 +42,13 @@ public class PartyRelationship extends BusinessEntity {
 
     @ManyToOne(optional = false)
     private PartyRelationshipType relationshipType;
+
+    @OneToMany(
+            mappedBy = "partyRelationship",
+            fetch = FetchType.LAZY, orphanRemoval = true,
+            cascade = CascadeType.ALL
+    )
+    private List<CommunicationEvent> communicationEvents = new ArrayList<>();
 
     public PartyRelationship() {
     }
@@ -63,6 +75,15 @@ public class PartyRelationship extends BusinessEntity {
 
     public void setRelationshipType(PartyRelationshipType relationshipType) {
         this.relationshipType = relationshipType;
+    }
+
+    public boolean addCommunicationEvent(CommunicationEvent event) {
+        event.setPartyRelationship(this);
+        return communicationEvents.add(event);
+    }
+
+    public boolean removeCommunicationEvent(CommunicationEvent event) {
+        return communicationEvents.remove(event);
     }
 
 }

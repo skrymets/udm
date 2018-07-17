@@ -23,6 +23,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import udm.MutablePersistentEntity;
+import udm.domain.contacts.PartyContactMechanism;
 import udm.parties.classifier.PartyClassification;
 import udm.parties.roles.PartyRole;
 
@@ -47,6 +48,12 @@ public abstract class Party extends MutablePersistentEntity {
             cascade = ALL, orphanRemoval = true
     )
     private List<PartyRole> partyRoles = new ArrayList<>();
+    
+    @OneToMany(
+            mappedBy = "party",
+            cascade = ALL, orphanRemoval = true
+    )
+    private List<PartyContactMechanism> partyContactMechanisms = new ArrayList<>();
 
     public boolean addPartyClassification(PartyClassification pc) {
         pc.setParty(this);
@@ -65,5 +72,16 @@ public abstract class Party extends MutablePersistentEntity {
     public boolean removePartyRole(PartyRole pr) {
         return partyRoles.remove(pr);
     }
+
+    public boolean addPartyContactMechanism(PartyContactMechanism pcm) {
+        pcm.setParty(this);
+        return partyContactMechanisms.add(pcm);
+    }
+
+    public boolean removePartyContactMechanism(PartyContactMechanism pcm) {
+        return partyContactMechanisms.remove(pcm);
+    }
+    
+    
 
 }
