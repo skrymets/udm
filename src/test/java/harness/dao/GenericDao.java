@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.dao;
+package harness.dao;
 
 import javax.persistence.EntityManager;
 import udm.PersistentEntity;
-import udm.dao.CDI.PersistenceContext;
+import harness.CDI.PersistenceContext;
 
 /**
  *
