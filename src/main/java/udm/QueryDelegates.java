@@ -21,7 +21,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import udm.dsl.QBusinessEntity;
 import udm.products.ProductLifecycle;
+import udm.products.ProductSupplier;
 import udm.products.dsl.QProductLifecycle;
+import udm.products.dsl.QProductSupplier;
 
 /**
  *
@@ -43,14 +45,20 @@ public class QueryDelegates {
     }
 
     @QueryDelegate(ProductLifecycle.class)
-    public static BooleanExpression isProductOnSale(final QProductLifecycle entity) {
+    public static BooleanExpression productOnSale(final QProductLifecycle entity) {
         LocalDate now = LocalDate.now();
         return entity.introducedToMarketDate.before(now).and(entity.salesDiscontinuationDate.after(now));
     }
 
     @QueryDelegate(ProductLifecycle.class)
-    public static BooleanExpression isProductSupported(final QProductLifecycle entity) {
+    public static BooleanExpression productSupported(final QProductLifecycle entity) {
         LocalDate now = LocalDate.now();
         return entity.introducedToMarketDate.before(now).and(entity.supportDiscontinuationDate.after(now));
+    }
+
+    @QueryDelegate(ProductSupplier.class)
+    public static BooleanExpression productAvailable(final QProductSupplier entity) {
+        LocalDateTime now = LocalDateTime.now();
+        return entity.availableFrom.before(now).and(entity.availableThru.after(now));
     }
 }

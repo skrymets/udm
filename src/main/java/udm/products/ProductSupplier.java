@@ -15,11 +15,14 @@
  */
 package udm.products;
 
+import java.time.LocalDateTime;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import udm.BusinessEntity;
+import udm.Defaults;
 
 /**
  *
@@ -38,6 +41,12 @@ public class ProductSupplier extends BusinessEntity {
     @JoinColumn
     private ProductSupplierPartyRole supplierPartyRole;
 
+    @Column(nullable = false)
+    private LocalDateTime availableFrom = Defaults.EPOCH_START;
+
+    @Column(nullable = false)
+    private LocalDateTime availableThru = Defaults.EPOCH_END;
+
     public ProductSupplier() {
     }
 
@@ -55,6 +64,22 @@ public class ProductSupplier extends BusinessEntity {
 
     public void setSupplierPartyRole(ProductSupplierPartyRole role) {
         this.supplierPartyRole = role;
+    }
+
+    public LocalDateTime getAvailableFrom() {
+        return availableFrom;
+    }
+
+    public void setAvailableFrom(LocalDateTime availableFrom) {
+        this.availableFrom = availableFrom;
+    }
+
+    public LocalDateTime getAvailableThru() {
+        return availableThru;
+    }
+
+    public void setAvailableThru(LocalDateTime availableThru) {
+        this.availableThru = availableThru;
     }
 
 }
