@@ -17,8 +17,11 @@ package udm;
 
 import com.querydsl.core.annotations.QueryDelegate;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import udm.dsl.QBusinessEntity;
+import udm.products.ProductLifecycle;
+import udm.products.dsl.QProductLifecycle;
 
 /**
  *
@@ -37,5 +40,17 @@ public class QueryDelegates {
         return entity.validFrom.before(instant).or(entity.validFrom.eq(instant))
                 .and(entity.validThru.after(instant).or(entity.validThru.eq(instant)));
 
+    }
+
+    @QueryDelegate(ProductLifecycle.class)
+    public static BooleanExpression isProductOnSale(final QProductLifecycle entity) {
+        LocalDate now = LocalDate.now();
+        return entity.introducedToMarketDate.before(now).and(entity.salesDiscontinuationDate.after(now));
+    }
+
+    @QueryDelegate(ProductLifecycle.class)
+    public static BooleanExpression isProductSupported(final QProductLifecycle entity) {
+        LocalDate now = LocalDate.now();
+        return entity.introducedToMarketDate.before(now).and(entity.supportDiscontinuationDate.after(now));
     }
 }

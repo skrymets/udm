@@ -18,79 +18,37 @@ package udm.products;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.Inheritance;
-import static javax.persistence.InheritanceType.JOINED;
 import javax.persistence.OneToMany;
-import udm.MutablePersistentEntity;
+import udm.classifiers.Classifier;
 
 /**
  *
  * @author skrymets
  */
 @Entity
-@Inheritance(strategy = JOINED)
-public abstract class Product extends MutablePersistentEntity {
+public class ProductCategory extends Classifier {
 
-    private static final long serialVersionUID = -5429124106731393559L;
-
-    @Column(nullable = false, unique = true)
-    private String name;
-
-    @Column(nullable = false, unique = true)
-    private String productKey;
+    private static final long serialVersionUID = 6791662664295132910L;
 
     @OneToMany(
-            mappedBy = "product",
+            mappedBy = "productCategory",
             fetch = FetchType.LAZY, orphanRemoval = true,
             cascade = CascadeType.ALL
     )
     private List<ProductCategoryClassification> categoryClassifications = new ArrayList<>();
 
-    @OneToMany(
-            mappedBy = "product",
-            fetch = FetchType.LAZY, orphanRemoval = true,
-            cascade = CascadeType.ALL
-    )
-    private List<ProductLifecycle> lifecycles = new ArrayList<>();
-
-    public Product() {
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getProductKey() {
-        return productKey;
-    }
-
-    public void setProductKey(String key) {
-        this.productKey = key;
+    public ProductCategory() {
     }
 
     public boolean addCategoryClassification(ProductCategoryClassification pcc) {
-        pcc.setProduct(this);
+        pcc.setProductCategory(this);
         return categoryClassifications.add(pcc);
     }
 
     public boolean removeCategoryClassification(ProductCategoryClassification pcc) {
         return categoryClassifications.remove(pcc);
-    }
-
-    public boolean addProductLifecycle(ProductLifecycle pl) {
-        pl.setProduct(this);
-        return lifecycles.add(pl);
-    }
-
-    public boolean removeProductLifecycle(ProductLifecycle pl) {
-        return lifecycles.remove(pl);
     }
 
 }

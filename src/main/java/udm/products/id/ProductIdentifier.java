@@ -13,14 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package udm.classifiers;
+package udm.products.id;
 
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import udm.PersistentEntity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import udm.MutablePersistentEntity;
 
 /**
  *
@@ -28,28 +30,40 @@ import udm.PersistentEntity;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Classifier extends PersistentEntity {
+public abstract class ProductIdentifier<T extends ProductIdentifierType> extends MutablePersistentEntity {
 
-    private static final long serialVersionUID = 8274173393698223675L;
+    private static final long serialVersionUID = 1223919081436750147L;
 
     @Column(nullable = false, unique = true)
-    protected String description;
+    private String identifierData;
 
-    public Classifier() {
+    @ManyToOne(optional = false)
+    @JoinColumn
+    private ProductIdentifierType productIdentifierType;
+
+    public ProductIdentifier() {
     }
 
-    public String getDescription() {
-        return description;
+    public String getIdentifierData() {
+        return identifierData;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setIdentifierData(String identifierData) {
+        this.identifierData = identifierData;
+    }
+
+    public T getProductIdentifierType() {
+        return (T) productIdentifierType;
+    }
+
+    public void setProductIdentifierType(T productIdentifierType) {
+        this.productIdentifierType = productIdentifierType;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 67 * hash + Objects.hashCode(this.description);
+        int hash = 5;
+        hash = 71 * hash + Objects.hashCode(this.identifierData);
         return hash;
     }
 
@@ -61,14 +75,14 @@ public abstract class Classifier extends PersistentEntity {
         if (obj == null) {
             return false;
         }
-
-        if (!getClass().isAssignableFrom(obj.getClass())) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-
-        final Classifier other = (Classifier) obj;
-
-        return (!Objects.equals(this.description, other.description));
+        final ProductIdentifier other = (ProductIdentifier) obj;
+        if (!Objects.equals(this.identifierData, other.identifierData)) {
+            return false;
+        }
+        return true;
     }
 
 }
