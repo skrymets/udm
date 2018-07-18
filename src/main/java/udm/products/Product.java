@@ -24,7 +24,9 @@ import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import static javax.persistence.InheritanceType.JOINED;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import udm.MutablePersistentEntity;
+import udm.products.id.ProductIdentifier;
 
 /**
  *
@@ -39,8 +41,12 @@ public abstract class Product extends MutablePersistentEntity {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @Column(nullable = false, unique = true)
-    private String productKey;
+    @OneToOne(
+            mappedBy = "product",
+            orphanRemoval = true, fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL
+    )
+    private ProductIdentifier productIdentifier;
 
     @OneToMany(
             mappedBy = "product",
@@ -56,6 +62,13 @@ public abstract class Product extends MutablePersistentEntity {
     )
     private List<ProductLifecycle> lifecycles = new ArrayList<>();
 
+    @OneToMany(
+            mappedBy = "product",
+            fetch = FetchType.LAZY, orphanRemoval = true,
+            cascade = CascadeType.ALL
+    )
+    private List<ProductSupplier> productSuppliers = new ArrayList<>();
+
     public Product() {
     }
 
@@ -67,12 +80,12 @@ public abstract class Product extends MutablePersistentEntity {
         this.name = name;
     }
 
-    public String getProductKey() {
-        return productKey;
+    public ProductIdentifier getProductIdentifier() {
+        return productIdentifier;
     }
 
-    public void setProductKey(String key) {
-        this.productKey = key;
+    public void setProductIdentifier(ProductIdentifier productIdentifier) {
+        this.productIdentifier = productIdentifier;
     }
 
     public boolean addCategoryClassification(ProductCategoryClassification pcc) {
@@ -91,6 +104,15 @@ public abstract class Product extends MutablePersistentEntity {
 
     public boolean removeProductLifecycle(ProductLifecycle pl) {
         return lifecycles.remove(pl);
+    }
+
+    public boolean addProductSupplier(ProductSupplier ps) {
+        ps.setProduct(this);
+        return productSuppliers.add(ps);
+    }
+
+    public boolean removeProductSupplier(ProductSupplier ps) {
+        return productSuppliers.remove(ps);
     }
 
 }

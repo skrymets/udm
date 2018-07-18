@@ -18,11 +18,14 @@ package udm.products.id;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import udm.MutablePersistentEntity;
+import udm.products.Product;
 
 /**
  *
@@ -34,6 +37,10 @@ public abstract class ProductIdentifier<T extends ProductIdentifierType> extends
 
     private static final long serialVersionUID = 1223919081436750147L;
 
+    @OneToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn
+    private Product product;
+
     @Column(nullable = false, unique = true)
     private String identifierData;
 
@@ -42,6 +49,14 @@ public abstract class ProductIdentifier<T extends ProductIdentifierType> extends
     private ProductIdentifierType productIdentifierType;
 
     public ProductIdentifier() {
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public String getIdentifierData() {
