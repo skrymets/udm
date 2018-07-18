@@ -15,6 +15,10 @@
  */
 package udm.parties;
 
+import harness.CDI.PersistenceContext;
+import harness.dao.PartyClassificationDAO;
+import harness.dao.PartyClassificationTypeDAO;
+import harness.dao.PersonDAO;
 import java.time.LocalDateTime;
 import java.util.List;
 import static org.junit.Assert.*;
@@ -23,10 +27,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import udm.AbstractTest;
 import udm.classifiers.PartyClassificationType;
-import harness.CDI.PersistenceContext;
-import harness.dao.PartyClassificationDAO;
-import harness.dao.PartyClassificationTypeDAO;
-import harness.dao.PersonDAO;
 import udm.domain.IncomeClassification;
 import udm.parties.dsl.QPartyClassification;
 import udm.parties.dsl.QPerson;

@@ -15,6 +15,11 @@
  */
 package udm.parties;
 
+import harness.dao.PartyRelationshipDAO;
+import harness.dao.PartyRelationshipTypeDAO;
+import harness.dao.PartyRoleDAO;
+import harness.dao.PartyRoleTypeDAO;
+import harness.dao.PersonDAO;
 import java.util.List;
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -23,11 +28,6 @@ import org.slf4j.LoggerFactory;
 import udm.AbstractTest;
 import udm.classifiers.PartyRelationshipType;
 import udm.classifiers.roles.PartyRoleType;
-import harness.dao.PartyRelationshipDAO;
-import harness.dao.PartyRelationshipTypeDAO;
-import harness.dao.PartyRoleDAO;
-import harness.dao.PartyRoleTypeDAO;
-import harness.dao.PersonDAO;
 import udm.domain.rlshp.TeachingInstructorRelationship;
 import udm.domain.roles.InstructorRole;
 import udm.domain.roles.StudentRole;

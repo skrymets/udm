@@ -29,11 +29,11 @@ public abstract class BusinessEntity extends MutablePersistentEntity implements 
 
     private static final long serialVersionUID = 249793911463091173L;
 
-    @Column
-    private LocalDateTime validFrom = ValidityAware.EPOCH_START;
+    @Column(nullable = false)
+    private LocalDateTime validFrom = Defaults.EPOCH_START;
 
-    @Column
-    private LocalDateTime validThru = ValidityAware.EPOCH_END;
+    @Column(nullable = false)
+    private LocalDateTime validThru = Defaults.EPOCH_END;
 
     public BusinessEntity() {
     }

@@ -15,9 +15,9 @@
  */
 package harness.dao;
 
+import harness.CDI.PersistenceContext;
 import javax.persistence.EntityManager;
 import udm.PersistentEntity;
-import harness.CDI.PersistenceContext;
 
 /**
  *

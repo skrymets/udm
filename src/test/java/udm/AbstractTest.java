@@ -16,6 +16,7 @@
 package udm;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import harness.CDI.PersistenceContext;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.persistence.EntityManager;
@@ -30,7 +31,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import harness.CDI.PersistenceContext;
 
 /**
  *

@@ -16,12 +16,13 @@
 package udm.products;
 
 import java.time.LocalDate;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import udm.Defaults;
 import udm.MutablePersistentEntity;
-import udm.ValidityAware;
 
 /**
  *
@@ -36,11 +37,14 @@ public class ProductLifecycle extends MutablePersistentEntity {
     @JoinColumn
     private Product product;
 
-    private LocalDate introducedToMarketDate = ValidityAware.EPOCH_START.toLocalDate();
+    @Column(nullable = false)
+    private LocalDate introducedToMarketDate = Defaults.EPOCH_START.toLocalDate();
 
-    private LocalDate salesDiscontinuationDate = ValidityAware.EPOCH_END.toLocalDate();
+    @Column(nullable = false)
+    private LocalDate salesDiscontinuationDate = Defaults.EPOCH_END.toLocalDate();
 
-    private LocalDate supportDiscontinuationDate = ValidityAware.EPOCH_END.toLocalDate();
+    @Column(nullable = false)
+    private LocalDate supportDiscontinuationDate = Defaults.EPOCH_END.toLocalDate();
 
     public ProductLifecycle() {
     }
